@@ -10,10 +10,6 @@ API_KEY = ""
 API_SECRET = ""
 NUM_THREADS = 100
 
-COINS = ["ADABTC", "ADXBTC", "AIONBTC", "AMBBTC", "APPCBTC", "ARKBTC", "ARNBTC", "ASTBTC", "BATBTC", "BCCBTC",
-         "BCDBTC", "BCPTBTC"
-         ]
-
 
 class WojakAlert:
     def __init__(self):
