@@ -1,0 +1,13 @@
+2018-01-18 22:47:21.800864: BouncePlay - high, low: 0.00011, 8.57e-05
+2018-01-18 22:47:21.800864: BouncePlay - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 22:48:59.025047: BouncePlay - high, low: 0.00011, 8.57e-05
+2018-01-18 22:48:59.026049: BouncePlay - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 22:53:37.579367: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:37.712678: BouncePlay - high, low: 0.00011, 8.57e-05
+2018-01-18 22:53:37.713680: BouncePlay - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 22:53:56.909847:  - -------------------------------------------------------
+2018-01-18 22:53:57.038513:  - high, low: 0.00011, 8.57e-05
+2018-01-18 22:53:57.038513:  - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 22:55:04.043733: -------------------------------------------------------
+2018-01-18 22:55:04.389668: high, low: 0.00011, 8.57e-05
+2018-01-18 22:55:04.483428: dip already happened, putting OAXBTC back on the runner list

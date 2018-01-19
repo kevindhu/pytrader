@@ -14,7 +14,7 @@ NUM_THREADS = 100
 
 class ChadAlert:
     def __init__(self):
-        self.logger = Logger("ChadAlert")
+        self.logger = Logger("ChadAlert", "")
         self.workers = []
         self.queue = Queue()
         self.fiveHourChad = set()

@@ -1,0 +1,11 @@
+2018-01-18 22:48:56.847760: BouncePlay - high, low: 0.000195, 0.00016786
+2018-01-18 22:48:56.847760: BouncePlay - dip already happened, putting ADXBTC back on the runner list
+2018-01-18 22:53:38.635940: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:38.769934: BouncePlay - high, low: 0.000195, 0.00016786
+2018-01-18 22:53:38.769934: BouncePlay - dip already happened, putting ADXBTC back on the runner list
+2018-01-18 22:54:59.894441: -------------------------------------------------------
+2018-01-18 22:55:00.033759: high, low: 0.000195, 0.00016786
+2018-01-18 22:55:00.034762: dip already happened, putting ADXBTC back on the runner list
+2018-01-18 23:09:33.120625: -------------------------------------------------------
+2018-01-18 23:09:33.263710: high, low: 0.000195, 0.00016786
+2018-01-18 23:09:33.263710: dip already happened, putting ADXBTC back on the runner list

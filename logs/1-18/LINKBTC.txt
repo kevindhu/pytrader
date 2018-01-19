@@ -1,0 +1,19 @@
+2018-01-18 22:47:21.711249: BouncePlay - high, low: 7.49e-05, 6.299e-05
+2018-01-18 22:47:21.713254: BouncePlay - dip already happened, putting LINKBTC back on the runner list
+2018-01-18 22:49:03.619586: BouncePlay - high, low: 7.49e-05, 6.299e-05
+2018-01-18 22:49:03.619586: BouncePlay - dip already happened, putting LINKBTC back on the runner list
+2018-01-18 22:53:38.214687: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:38.355325: BouncePlay - high, low: 7.49e-05, 6.299e-05
+2018-01-18 22:53:38.355325: BouncePlay - dip already happened, putting LINKBTC back on the runner list
+2018-01-18 22:54:01.926249:  - -------------------------------------------------------
+2018-01-18 22:54:02.089277:  - high, low: 7.49e-05, 6.299e-05
+2018-01-18 22:54:02.089277:  - dip already happened, putting LINKBTC back on the runner list
+2018-01-18 22:55:06.180698: -------------------------------------------------------
+2018-01-18 22:55:06.321338: high, low: 7.49e-05, 6.299e-05
+2018-01-18 22:55:06.321338: dip already happened, putting LINKBTC back on the runner list
+2018-01-18 23:09:22.846375: -------------------------------------------------------
+2018-01-18 23:09:22.987014: high, low: 7.49e-05, 6.33e-05
+2018-01-18 23:09:22.987014: dip already happened, putting LINKBTC back on the runner list
+2018-01-18 23:10:31.531622: -------------------------------------------------------
+2018-01-18 23:10:31.670485: high, low: 7.49e-05, 6.33e-05
+2018-01-18 23:10:31.671493: dip already happened, putting LINKBTC back on the runner list

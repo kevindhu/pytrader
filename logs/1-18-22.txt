@@ -1,0 +1,186 @@
+2018-01-18 22:39:12.053614: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:39:14.278253: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:39:14.278253: ChadAlert - Playing bounce-play from list: NEOBTC
+2018-01-18 22:39:14.466371: ChadAlert - adding LUNBTC to bounce list
+2018-01-18 22:39:14.468365: ChadAlert - Playing bounce-play from list: LUNBTC
+2018-01-18 22:39:15.253394: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:39:15.253394: ChadAlert - Playing bounce-play from list: TRXBTC
+2018-01-18 22:39:15.462045: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:39:15.462045: ChadAlert - Playing bounce-play from list: LINKBTC
+2018-01-18 22:39:15.477673: ChadAlert - adding AMBBTC to bounce list
+2018-01-18 22:39:15.487503: ChadAlert - Playing bounce-play from list: AMBBTC
+2018-01-18 22:39:15.512984: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 22:39:15.529027: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:39:15.919439: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:39:18.174699: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:39:18.777831: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:39:18.861052: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:39:19.075624: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:39:19.101692: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:39:19.432572: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:43:34.485103: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:43:39.397685: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:43:39.397685: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:43:40.182662: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:43:40.182662: ChadAlert - Playing bounce-play from list: ADXBTC
+2018-01-18 22:43:40.327645: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:43:40.343271: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 22:43:40.423065: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:43:40.438716: ChadAlert - Playing bounce-play from list: MTHBTC
+2018-01-18 22:43:40.438716: ChadAlert - adding AMBBTC to bounce list
+2018-01-18 22:43:40.454318: ChadAlert - Playing bounce-play from list: AMBBTC
+2018-01-18 22:43:41.604206: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:43:41.909729: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:43:42.147677: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 22:43:42.272690: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:43:43.102946: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:43:43.281005: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:43:43.484151: ChadAlert - adding LUNBTC to bounce list
+2018-01-18 22:43:43.499779: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:45:39.994728: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:47:18.673725: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:47:20.894658: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:47:20.894658: ChadAlert - Playing bounce-play from list: LINKBTC
+2018-01-18 22:47:20.964120: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:47:20.964120: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:47:20.983084: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:47:20.984087: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 22:47:21.414805: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:47:21.414805: ChadAlert - Playing bounce-play from list: TRXBTC
+2018-01-18 22:47:24.419417: ChadAlert - adding SNMBTC to bounce list
+2018-01-18 22:47:24.419417: ChadAlert - Playing bounce-play from list: SNMBTC
+2018-01-18 22:47:24.481924: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:47:25.578044: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:47:25.593673: ChadAlert - Playing bounce-play from list: MTHBTC
+2018-01-18 22:47:25.666506: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:47:25.668511: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:47:25.848175: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:47:26.057968: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:47:26.370503: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:47:26.448635: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:47:26.479888: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 22:47:26.511146: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:47:30.257272: ChadAlert - adding AMBBTC to bounce list
+2018-01-18 22:47:30.288515: ChadAlert - adding LUNBTC to bounce list
+2018-01-18 22:47:57.022611: ChadAlert - adding FUELBTC to bounce list
+2018-01-18 22:48:49.910582: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:48:53.976325: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 22:48:53.977326: ChadAlert - Playing bounce-play from list: CDTBTC
+2018-01-18 22:48:54.086923: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:48:54.086923: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 22:48:54.086923: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:48:54.102550: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 22:48:54.196309: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:48:54.196309: ChadAlert - Playing bounce-play from list: TRXBTC
+2018-01-18 22:48:54.383829: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:48:54.383829: ChadAlert - Playing bounce-play from list: ADXBTC
+2018-01-18 22:48:56.894639: ChadAlert - adding LUNBTC to bounce list
+2018-01-18 22:48:56.910267: ChadAlert - Playing bounce-play from list: LUNBTC
+2018-01-18 22:48:57.086479: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:48:57.086479: ChadAlert - Playing bounce-play from list: LUNBTC
+2018-01-18 22:48:57.086479: ChadAlert - Playing bounce-play from list: NEOBTC
+2018-01-18 22:48:57.582521: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:48:57.582521: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 22:48:57.613769: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:48:57.613769: ChadAlert - Playing bounce-play from list: MTHBTC
+2018-01-18 22:48:57.676275: ChadAlert - adding AMBBTC to bounce list
+2018-01-18 22:48:57.755104: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:48:58.531921: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:48:58.531921: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:49:02.389103: ChadAlert - Playing bounce-play from list: LINKBTC
+2018-01-18 22:49:02.404730: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:49:02.420357: ChadAlert - Playing bounce-play from list: AMBBTC
+2018-01-18 22:49:02.934580: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:49:03.785482: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:49:03.785482: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 22:49:08.229413: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:49:08.229413: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:49:51.647605: ChadAlert - adding GASBTC to bounce list
+2018-01-18 22:51:28.863666: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 22:53:35.514651: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:53:36.863096: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:53:36.863096: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 22:53:37.028465: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:53:37.028465: ChadAlert - Playing bounce-play from list: NEOBTC
+2018-01-18 22:53:37.265178: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:53:37.265178: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 22:53:37.391848: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:53:37.391848: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:53:37.485606: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:53:37.485606: ChadAlert - Playing bounce-play from list: LINKBTC
+2018-01-18 22:53:37.501234: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:53:37.922693: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:53:37.922693: ChadAlert - Playing bounce-play from list: ADXBTC
+2018-01-18 22:53:41.140039: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:53:41.142044: ChadAlert - Playing bounce-play from list: TRXBTC
+2018-01-18 22:53:41.676691: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:53:41.676691: ChadAlert - Playing bounce-play from list: MTHBTC
+2018-01-18 22:53:41.753948: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:53:41.753948: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:53:42.242751: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:53:42.242751: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 22:53:42.652251: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:53:42.667878: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 22:53:46.436674: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:53:46.436674: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:53:50.260038: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 22:53:52.058565: ChadAlert - adding MTHBTC to bounce list
+2018-01-18 22:53:52.074193: ChadAlert - Playing bounce-play from list: MTHBTC
+2018-01-18 22:53:52.214831: ChadAlert - adding NEOBTC to bounce list
+2018-01-18 22:53:52.214831: ChadAlert - Playing bounce-play from list: NEOBTC
+2018-01-18 22:53:52.237081: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 22:53:52.238085: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:53:52.312167: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 22:53:52.314354: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 22:53:52.612688: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 22:53:52.612688: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 22:53:52.628330: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 22:53:52.692487: ChadAlert - adding POEBTC to bounce list
+2018-01-18 22:53:55.894938: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 22:53:55.910566: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:53:55.941819: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 22:53:56.610445: ChadAlert - adding TRXBTC to bounce list
+2018-01-18 22:53:56.641706: ChadAlert - Playing bounce-play from list: TRXBTC
+2018-01-18 22:53:56.831715: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 22:53:56.847342: ChadAlert - adding LINKBTC to bounce list
+2018-01-18 22:53:56.925474: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 22:54:01.236233: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 22:54:01.240247: ChadAlert - Playing bounce-play from list: LINKBTC
+2018-01-18 22:54:01.263305: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:54:01.658242: ChadAlert - adding ADXBTC to bounce list
+2018-01-18 22:54:06.569845: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 22:54:06.569845: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 22:54:08.864108: ChadAlert - adding AMBBTC to bounce list
+2018-01-18 22:54:33.038517: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 22:54:56.895905: ----------------------------------------------------------------------------
+2018-01-18 22:54:58.499318: adding NEOBTC to bounce list
+2018-01-18 22:54:58.499318: Playing bounce-play from list: NEOBTC
+2018-01-18 22:54:58.863009: adding AMBBTC to bounce list
+2018-01-18 22:54:58.863009: Playing bounce-play from list: AMBBTC
+2018-01-18 22:54:58.894262: adding TNBBTC to bounce list
+2018-01-18 22:54:58.894262: Playing bounce-play from list: TNBBTC
+2018-01-18 22:54:58.988342: adding ADXBTC to bounce list
+2018-01-18 22:54:58.988342: Playing bounce-play from list: ADXBTC
+2018-01-18 22:54:59.648195: adding POEBTC to bounce list
+2018-01-18 22:54:59.648195: Playing bounce-play from list: POEBTC
+2018-01-18 22:54:59.728085: adding MTHBTC to bounce list
+2018-01-18 22:54:59.731090: Playing bounce-play from list: MTHBTC
+2018-01-18 22:54:59.738174: adding OAXBTC to bounce list
+2018-01-18 22:55:02.557382: Playing bounce-play from list: OAXBTC
+2018-01-18 22:55:05.077392: adding FUNBTC to bounce list
+2018-01-18 22:55:05.077392: Playing bounce-play from list: FUNBTC
+2018-01-18 22:55:05.499311: adding BTGBTC to bounce list
+2018-01-18 22:55:05.499311: Playing bounce-play from list: BTGBTC
+2018-01-18 22:55:05.499311: adding LINKBTC to bounce list
+2018-01-18 22:55:05.499311: Playing bounce-play from list: LINKBTC
+2018-01-18 22:55:05.624325: adding VIBEBTC to bounce list
+2018-01-18 22:55:05.624325: Playing bounce-play from list: VIBEBTC
+2018-01-18 22:55:07.910109: Playing bounce-play from list: BTGBTC
+2018-01-18 22:55:08.417112: adding EVXBTC to bounce list
+2018-01-18 22:55:08.417112: Playing bounce-play from list: EVXBTC
+2018-01-18 22:55:08.479619: adding TRXBTC to bounce list
+2018-01-18 22:55:08.479619: Playing bounce-play from list: TRXBTC
+2018-01-18 22:55:13.231055: Playing bounce-play from list: BTGBTC
+2018-01-18 22:55:13.231055: Playing bounce-play from list: EVXBTC
+2018-01-18 22:56:33.023056: adding CDTBTC to bounce list
+2018-01-18 22:57:44.316502: adding NULSBTC to bounce list

@@ -1,0 +1,4 @@
+2018-01-18 22:48:57.770731: BouncePlay - high, low: 0.003259, 0.0026658
+2018-01-18 22:48:57.770731: BouncePlay - dip already happened, putting LUNBTC back on the runner list
+2018-01-18 22:48:58.390589: BouncePlay - high, low: 0.003259, 0.0026658
+2018-01-18 22:48:58.390589: BouncePlay - dip already happened, putting LUNBTC back on the runner list

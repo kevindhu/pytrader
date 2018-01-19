@@ -10,7 +10,8 @@ NUM_THREADS = 100
 
 class BouncePlay:
     def __init__(self, coin, chadAlert):
-        self.logger = Logger("BouncePlay")
+        self.logger = Logger("", coin)
+        self.logreceipt = Logger("", coin + "receipt")
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.coin = coin
         self.chadAlert = chadAlert
@@ -30,7 +31,7 @@ class BouncePlay:
 
     def run(self):
         loops = 0
-
+        self.logger.log("-------------------------------------------------------")
         # firstKline = first candlestick that is green and larger volume
         firstKline = False
         minVolume = 0.0
@@ -90,10 +91,11 @@ class BouncePlay:
 
             # if sell is satisfied
             if self.mainSellOrder and price > self.mainSellOrder["price"]:
-                self.logger.log("GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids".format(self.mainSellOrder["price"], self.coin))
+                self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids--------".format(self.mainSellOrder["price"], self.coin))
                 # cancel any bids
                 if self.mainBuyOrder:
                     self.client.cancel_order(self.mainBuyOrder["orderId"])
+                self.logreceipt.log("SOLD AT {0}".format(self.mainSellOrder["price"]))
                 self.stage = 6
 
             if self.stage == 1:
@@ -139,23 +141,24 @@ class BouncePlay:
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
                     self.stage = 3
-                    self.logger.log("commencing stage 3, now in the trade at {0}, will attempt to sell at {1}".
+                    self.logger.log("-------commencing stage 3, now in the trade at {0}, will attempt to sell at {1}----------".
                                     format(firstBuyPrice, firstSellPrice))
+                    self.logreceipt.log("BOUGHT AT {0}".format(firstBuyPrice))
 
             elif self.stage == 3:
                 if price < secondBuyPrice:
                     # cancel previous order sell
-                    self.logger.log("commencing stage 4, now in the trade at {0}, will attempt to sell at {1}".
+                    self.logger.log("------commencing stage 4, now in the trade at {0}, will attempt to sell at {1}---------".
                                     format(secondBuyPrice, secondSellPrice))
-
+                    self.logreceipt.log("BOUGHT AT {0}".format(secondBuyPrice))
                     self.stage = 4
 
             elif self.stage == 4:
                 if price < secondBuyPrice:
                     # cancel previous order sell
-                    self.logger.log("commencing stage 3, now in the trade at {0}, will attempt to sell at {1}".
+                    self.logger.log("-------commencing stage 5, now in the trade at {0}, will attempt to sell at {1}-------".
                                     format(thirdBuyPrice, thirdSellPrice))
-
+                    self.logreceipt.log("BOUGHT AT {0}".format(thirdBuyPrice))
                     self.stage = 5
 
             elif self.stage == 5:

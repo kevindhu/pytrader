@@ -1,0 +1,16 @@
+2018-01-18 22:47:22.243137: BouncePlay - high, low: 9.45e-06, 6.56e-06
+2018-01-18 22:47:22.245142: BouncePlay - dip already happened, putting TRXBTC back on the runner list
+2018-01-18 22:48:56.416048: BouncePlay - high, low: 9.45e-06, 6.56e-06
+2018-01-18 22:48:56.423067: BouncePlay - dip already happened, putting TRXBTC back on the runner list
+2018-01-18 22:53:41.910215: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:42.053151: BouncePlay - high, low: 9.45e-06, 6.56e-06
+2018-01-18 22:53:42.055229: BouncePlay - dip already happened, putting TRXBTC back on the runner list
+2018-01-18 22:53:57.383961:  - -------------------------------------------------------
+2018-01-18 22:53:57.508973:  - high, low: 9.45e-06, 6.56e-06
+2018-01-18 22:53:57.524600:  - dip already happened, putting TRXBTC back on the runner list
+2018-01-18 22:55:09.167504: -------------------------------------------------------
+2018-01-18 22:55:09.298968: high, low: 9.45e-06, 6.56e-06
+2018-01-18 22:55:09.298968: dip already happened, putting TRXBTC back on the runner list
+2018-01-18 23:09:23.073378: -------------------------------------------------------
+2018-01-18 23:09:23.214018: high, low: 9.45e-06, 6.56e-06
+2018-01-18 23:09:23.214018: dip already happened, putting TRXBTC back on the runner list

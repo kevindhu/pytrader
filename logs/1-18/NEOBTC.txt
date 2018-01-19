@@ -1,0 +1,11 @@
+2018-01-18 22:48:58.421843: BouncePlay - high, low: 0.013596, 0.010002
+2018-01-18 22:48:58.421843: BouncePlay - dip already happened, putting NEOBTC back on the runner list
+2018-01-18 22:53:37.731729: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:37.860186: BouncePlay - high, low: 0.013596, 0.010002
+2018-01-18 22:53:37.860186: BouncePlay - dip already happened, putting NEOBTC back on the runner list
+2018-01-18 22:53:52.895153:  - -------------------------------------------------------
+2018-01-18 22:53:53.050712:  - high, low: 0.013596, 0.010002
+2018-01-18 22:53:53.050712:  - dip already happened, putting NEOBTC back on the runner list
+2018-01-18 22:54:59.241902: -------------------------------------------------------
+2018-01-18 22:54:59.476303: high, low: 0.013596, 0.010002
+2018-01-18 22:54:59.476303: dip already happened, putting NEOBTC back on the runner list

@@ -1,0 +1,17 @@
+2018-01-18 22:48:59.017025: BouncePlay - high, low: 2.998e-05, 2.57e-05
+2018-01-18 22:48:59.018027: BouncePlay - dip already happened, putting MTHBTC back on the runner list
+2018-01-18 22:53:42.369917: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:42.494930: BouncePlay - high, low: 2.998e-05, 2.57e-05
+2018-01-18 22:53:42.494930: BouncePlay - dip already happened, putting MTHBTC back on the runner list
+2018-01-18 22:53:52.754513:  - -------------------------------------------------------
+2018-01-18 22:53:52.910780:  - high, low: 2.998e-05, 2.57e-05
+2018-01-18 22:53:52.910780:  - dip already happened, putting MTHBTC back on the runner list
+2018-01-18 22:55:00.399717: -------------------------------------------------------
+2018-01-18 22:55:00.540357: high, low: 2.998e-05, 2.57e-05
+2018-01-18 22:55:00.540357: dip already happened, putting MTHBTC back on the runner list
+2018-01-18 23:09:27.309281: -------------------------------------------------------
+2018-01-18 23:09:27.439574: high, low: 2.998e-05, 2.57e-05
+2018-01-18 23:09:27.439574: dip already happened, putting MTHBTC back on the runner list
+2018-01-18 23:10:45.529591: -------------------------------------------------------
+2018-01-18 23:10:45.662815: high, low: 2.998e-05, 2.57e-05
+2018-01-18 23:10:45.665822: dip already happened, putting MTHBTC back on the runner list

@@ -1,0 +1,14 @@
+2018-01-18 22:48:55.785446: BouncePlay - high, low: 9.485e-05, 7e-05
+2018-01-18 22:48:55.785446: BouncePlay - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 22:53:37.922693: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:38.058421: BouncePlay - high, low: 9.485e-05, 7e-05
+2018-01-18 22:53:38.058421: BouncePlay - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 22:53:53.347617:  - -------------------------------------------------------
+2018-01-18 22:53:53.488257:  - high, low: 9.485e-05, 7e-05
+2018-01-18 22:53:53.488257:  - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 22:55:06.290084: -------------------------------------------------------
+2018-01-18 22:55:06.430724: high, low: 9.485e-05, 7e-05
+2018-01-18 22:55:06.430724: dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 23:09:27.370334: -------------------------------------------------------
+2018-01-18 23:09:27.514298: high, low: 9.485e-05, 6.725e-05
+2018-01-18 23:09:27.515299: dip already happened, putting VIBEBTC back on the runner list

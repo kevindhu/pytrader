@@ -1,0 +1,17 @@
+2018-01-18 22:48:55.769819: BouncePlay - high, low: 1.089e-05, 7.78e-06
+2018-01-18 22:48:55.785446: BouncePlay - dip already happened, putting POEBTC back on the runner list
+2018-01-18 22:53:42.936107: BouncePlay - -------------------------------------------------------
+2018-01-18 22:53:43.075591: BouncePlay - high, low: 1.089e-05, 7.78e-06
+2018-01-18 22:53:43.075591: BouncePlay - dip already happened, putting POEBTC back on the runner list
+2018-01-18 22:53:56.909847:  - -------------------------------------------------------
+2018-01-18 22:53:57.069766:  - high, low: 1.089e-05, 7.78e-06
+2018-01-18 22:53:57.069766:  - dip already happened, putting POEBTC back on the runner list
+2018-01-18 22:55:00.321583: -------------------------------------------------------
+2018-01-18 22:55:00.462223: high, low: 1.089e-05, 7.78e-06
+2018-01-18 22:55:00.462223: dip already happened, putting POEBTC back on the runner list
+2018-01-18 23:09:27.791136: -------------------------------------------------------
+2018-01-18 23:09:27.916131: high, low: 1.089e-05, 7.78e-06
+2018-01-18 23:09:27.916131: dip already happened, putting POEBTC back on the runner list
+2018-01-18 23:10:31.589623: -------------------------------------------------------
+2018-01-18 23:10:31.732027: high, low: 1.089e-05, 7.78e-06
+2018-01-18 23:10:31.733033: dip already happened, putting POEBTC back on the runner list
