@@ -24,11 +24,11 @@ class ChadAlert:
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.bouncePlays = set()
         self.blacklist = set()
-        self.bouncePlaying = False
         self.runners = {}
         self.serverTime = 0.0
         self.prices = {}
         self.loops = 0
+        self.bouncePlayCount = 0
 
     def run(self):
         for worker_id in range(NUM_THREADS):
@@ -56,7 +56,7 @@ class ChadAlert:
 
             # resets every 100 loops
             if self.loops % 100 == 0:
-                self.logger.log("RESETTING SETS")
+                #self.logger.log("RESETTING SETS")
                 self.fiveHourChad = set()
                 self.tenMinChad = set()
             time.sleep(5)
@@ -124,8 +124,8 @@ class ChadAlert:
         if coin in self.runners:
             price = self.prices[coin]
 
-            if self.serverTime - self.runners[coin]["time"] > 1000000:
-                self.logger.log("Too long, taking coin out of runners")
+            if self.serverTime - self.runners[coin]["time"] > 106400000:
+                self.logger.log("Too long, taking {0} out of runners".format(coin))
                 self.runners.pop(coin, 0)
 
             elif price > self.runners[coin]["high"]:
@@ -133,14 +133,13 @@ class ChadAlert:
                 self.bouncePlays.add(coin)
                 self.runners.pop(coin, 0)
 
-        if coin in self.bouncePlays and not self.bouncePlaying:
+        if coin in self.bouncePlays and self.bouncePlayCount < 5:
+            with lock:
+                self.bouncePlayCount += 1
             self.logger.log("Playing bounce-play from list: {0}".format(coin))
-            self.bouncePlaying = True
             bouncePlay = BouncePlay(coin, self)
 
         if tenMinIncrease > 0.07 and (coin not in self.tenMinChad):
-            self.logger.log("YOOO! THE PRICE FOR {0} has CHADSTEPPED {1}% in the past ten minutes! (price : {2})"
-                  .format(coin, str(tenMinIncrease * 100), str(currPrice)))
             self.tenMinChad.add(coin)
 
     def getMinLow(self, klines):

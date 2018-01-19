@@ -1,0 +1,526 @@
+2018-01-18 18:00:18.451802: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:01:53.806499: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:01:59.117868: ChadAlert - adding INSBTC to bounce list
+2018-01-18 18:06:29.547410: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:08:31.599425: ChadAlert - RESETTING SETS
+2018-01-18 18:09:46.562517: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:09:48.565374: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:09:48.614504: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:09:48.627038: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:09:48.730814: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:09:49.083295: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:09:49.133428: ChadAlert - adding INSBTC to bounce list
+2018-01-18 18:09:54.216646: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:09:54.265275: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:09:54.318918: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:09:54.417680: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:09:58.016552: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:09:58.099691: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:10:45.375949: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:11:58.681019: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:12:09.678646: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:12:11.337133: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:12:11.458464: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:12:26.296780: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:12:26.601524: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:12:28.604826: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:12:29.202310: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:12:29.872091: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:12:44.341954: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:12:44.461670: ChadAlert - adding INSBTC to bounce list
+2018-01-18 18:12:45.984078: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:12:46.040729: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:12:55.666006: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:12:57.521926: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:12:57.523431: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:12:57.752039: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:12:57.755046: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:12:58.000198: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:12:58.001201: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:12:58.054353: ChadAlert - adding INSBTC to bounce list
+2018-01-18 18:12:58.055356: ChadAlert - Playing bounce-play from list: INSBTC
+2018-01-18 18:12:58.367184: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:12:58.368187: ChadAlert - Playing bounce-play from list: CDTBTC
+2018-01-18 18:12:58.375709: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:12:58.464991: BouncePlay - high, low: 0.0205, 0.016599
+2018-01-18 18:12:58.465994: BouncePlay - dip already happened, putting BTGBTC back on the runner list
+2018-01-18 18:12:58.566285: BouncePlay - high, low: 0.0003935, 0.000284
+2018-01-18 18:12:58.567288: BouncePlay - dip already happened, putting EVXBTC back on the runner list
+2018-01-18 18:12:58.865122: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:12:58.866125: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:12:58.932801: BouncePlay - high, low: 0.0004572, 0.000403
+2018-01-18 18:12:58.933303: BouncePlay - commencing stage 1, starting the bounce play on INSBTC
+2018-01-18 18:12:59.196558: BouncePlay - high, low: 1.288e-05, 8.56e-06
+2018-01-18 18:12:59.197561: BouncePlay - dip already happened, putting CDTBTC back on the runner list
+2018-01-18 18:13:01.296093: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:01.297096: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:01.319154: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:13:01.322162: ChadAlert - Playing bounce-play from list: MODBTC
+2018-01-18 18:13:01.385330: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:01.396861: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:13:01.413906: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:13:02.560955: BouncePlay - high, low: 0.0006, 0.0005
+2018-01-18 18:13:02.561958: BouncePlay - dip already happened, putting MODBTC back on the runner list
+2018-01-18 18:13:02.613595: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:13:02.614598: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:13:02.647686: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:13:02.648689: ChadAlert - Playing bounce-play from list: STORJBTC
+2018-01-18 18:13:02.980069: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 18:13:03.462569: BouncePlay - high, low: 0.00013972, 0.00011016
+2018-01-18 18:13:03.463572: BouncePlay - dip already happened, putting STORJBTC back on the runner list
+2018-01-18 18:13:06.761009: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 18:13:06.762022: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:13:06.763012: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:13:06.769028: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:06.777053: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:06.799120: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:13:07.178618: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:13:07.186137: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:13:07.196163: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:13:07.542584: BouncePlay - high, low: 0.00011, 8.57e-05
+2018-01-18 18:13:07.544592: BouncePlay - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 18:13:07.681966: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:13:07.682970: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 18:13:08.498300: BouncePlay - high, low: 1.195e-05, 8.03e-06
+2018-01-18 18:13:08.499302: BouncePlay - commencing stage 1, starting the bounce play on TNBBTC
+2018-01-18 18:13:12.110128: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:13:12.112133: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:13:12.276570: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:13:17.402606: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 18:13:27.977706: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:13:33.258895: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:13:59.652462: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:15:16.768643: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:15:18.455038: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:15:18.456041: ChadAlert - Playing bounce-play from list: SNTBTC
+2018-01-18 18:15:18.727262: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:15:18.738292: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:15:19.617295: BouncePlay - high, low: 3.1e-05, 2.56e-05
+2018-01-18 18:15:19.620298: BouncePlay - dip already happened, putting SNTBTC back on the runner list
+2018-01-18 18:15:19.653885: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:15:19.654887: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:15:22.510375: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:15:22.526920: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:23.071867: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:15:23.075376: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:15:23.120497: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:15:23.121500: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:15:23.403270: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:15:23.404775: ChadAlert - Playing bounce-play from list: ICNBTC
+2018-01-18 18:15:23.484487: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:15:23.534620: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:15:23.539633: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:15:23.570219: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:15:23.787793: ChadAlert - adding CTRBTC to bounce list
+2018-01-18 18:15:23.811002: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:15:23.887717: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:15:23.911280: BouncePlay - high, low: 0.0205, 0.016599
+2018-01-18 18:15:23.912784: BouncePlay - dip already happened, putting BTGBTC back on the runner list
+2018-01-18 18:15:23.920304: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:15:23.921307: ChadAlert - Playing bounce-play from list: RLCBTC
+2018-01-18 18:15:24.035845: BouncePlay - high, low: 0.0003935, 0.000284
+2018-01-18 18:15:24.037349: BouncePlay - dip already happened, putting EVXBTC back on the runner list
+2018-01-18 18:15:24.328500: BouncePlay - Volume (80.86817227 BTC) did not match parameters: deleting from bounce list
+2018-01-18 18:15:24.737869: BouncePlay - high, low: 0.000209, 0.0001819
+2018-01-18 18:15:24.738371: BouncePlay - dip already happened, putting RLCBTC back on the runner list
+2018-01-18 18:15:28.018881: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:15:28.024898: ChadAlert - Playing bounce-play from list: CTRBTC
+2018-01-18 18:15:28.037431: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:15:28.039436: ChadAlert - Playing bounce-play from list: SNTBTC
+2018-01-18 18:15:28.054977: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:28.054977: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:28.109121: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:28.555836: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:15:28.819036: BouncePlay - high, low: 3.1e-05, 2.56e-05
+2018-01-18 18:15:28.820039: BouncePlay - dip already happened, putting SNTBTC back on the runner list
+2018-01-18 18:15:28.836583: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:15:28.838087: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:15:28.853628: BouncePlay - high, low: 0.00015, 0.00012499
+2018-01-18 18:15:28.854129: BouncePlay - dip already happened, putting CTRBTC back on the runner list
+2018-01-18 18:15:28.966930: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:15:28.968433: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 18:15:29.782662: BouncePlay - high, low: 9.485e-05, 6.725e-05
+2018-01-18 18:15:29.783665: BouncePlay - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 18:15:33.343435: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:15:33.344442: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:33.344941: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:33.349451: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:15:33.349970: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:15:33.352961: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:15:33.359478: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:33.359979: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:15:34.183624: BouncePlay - high, low: 0.0205, 0.016599
+2018-01-18 18:15:34.183624: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:15:34.185128: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:15:34.185128: BouncePlay - dip already happened, putting BTGBTC back on the runner list
+2018-01-18 18:15:38.606271: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:15:38.611786: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:15:38.612789: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:38.620309: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:15:39.420989: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:15:39.421992: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:15:43.867959: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:15:53.636012: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:15:55.687180: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:15:55.688183: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:15:55.782935: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:15:55.787948: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:15:55.847105: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:15:55.850113: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 18:15:55.959403: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:15:55.959905: ChadAlert - Playing bounce-play from list: RLCBTC
+2018-01-18 18:15:56.331439: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:15:56.332942: ChadAlert - Playing bounce-play from list: ICNBTC
+2018-01-18 18:15:56.361519: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:15:56.517933: BouncePlay - high, low: 9.45e-06, 7.78e-06
+2018-01-18 18:15:56.518435: BouncePlay - commencing stage 1, starting the bounce play on POEBTC
+2018-01-18 18:15:56.635746: BouncePlay - high, low: 0.0003935, 0.000284
+2018-01-18 18:15:56.636749: BouncePlay - dip already happened, putting EVXBTC back on the runner list
+2018-01-18 18:15:56.682873: BouncePlay - high, low: 9.485e-05, 6.725e-05
+2018-01-18 18:15:56.683874: BouncePlay - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 18:15:56.781133: BouncePlay - high, low: 0.000209, 0.0001819
+2018-01-18 18:15:56.782637: BouncePlay - dip already happened, putting RLCBTC back on the runner list
+2018-01-18 18:15:57.237346: BouncePlay - Volume (80.86817227 BTC) did not match parameters: deleting from bounce list
+2018-01-18 18:15:59.344026: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:59.363594: ChadAlert - Playing bounce-play from list: STORJBTC
+2018-01-18 18:15:59.396181: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:15:59.415732: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:15:59.416234: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:00.245438: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:16:00.246440: ChadAlert - Playing bounce-play from list: SNTBTC
+2018-01-18 18:16:00.256972: BouncePlay - high, low: 0.00013972, 0.00011016
+2018-01-18 18:16:00.258976: BouncePlay - dip already happened, putting STORJBTC back on the runner list
+2018-01-18 18:16:00.286550: BouncePlay - high, low: 9.45e-06, 7.78e-06
+2018-01-18 18:16:00.287550: BouncePlay - commencing stage 1, starting the bounce play on POEBTC
+2018-01-18 18:16:00.333171: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:16:00.334174: ChadAlert - Playing bounce-play from list: CDTBTC
+2018-01-18 18:16:01.117347: BouncePlay - high, low: 3.1e-05, 2.56e-05
+2018-01-18 18:16:01.117848: BouncePlay - dip already happened, putting SNTBTC back on the runner list
+2018-01-18 18:16:01.135896: BouncePlay - high, low: 1.449e-05, 8.56e-06
+2018-01-18 18:16:01.136898: BouncePlay - dip already happened, putting CDTBTC back on the runner list
+2018-01-18 18:16:04.685318: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:04.692329: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:16:04.693838: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:16:04.695839: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:16:04.694837: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:04.696841: ChadAlert - Playing bounce-play from list: MODBTC
+2018-01-18 18:16:04.700351: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:04.701353: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:16:04.719401: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:16:04.725417: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:16:05.164083: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:16:05.165086: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:16:05.292952: BouncePlay - commencing stage 2, the price has gone to 9.03e-06, 25.149700598802365% dip from the top at 9.45e-06 and bottom at 7.78e-06
+2018-01-18 18:16:05.295432: BouncePlay - WILL TRADE: at 8.615e-06 - 8.911e-06, 8.3645e-06 - 8.5865e-06, 8.1975e-06 - 8.419500000000001e-06
+2018-01-18 18:16:05.479934: BouncePlay - high, low: 9.45e-06, 7.78e-06
+2018-01-18 18:16:05.480436: BouncePlay - commencing stage 1, starting the bounce play on POEBTC
+2018-01-18 18:16:05.481438: BouncePlay - commencing stage 2, the price has gone to 9.03e-06, 25.149700598802365% dip from the top at 9.45e-06 and bottom at 7.78e-06
+2018-01-18 18:16:05.481939: BouncePlay - WILL TRADE: at 8.615e-06 - 8.911e-06, 8.3645e-06 - 8.5865e-06, 8.1975e-06 - 8.419500000000001e-06
+2018-01-18 18:16:05.486966: BouncePlay - high, low: 0.0003935, 0.000284
+2018-01-18 18:16:05.488960: BouncePlay - dip already happened, putting EVXBTC back on the runner list
+2018-01-18 18:16:05.518537: BouncePlay - high, low: 0.0006, 0.0005
+2018-01-18 18:16:05.519038: BouncePlay - dip already happened, putting MODBTC back on the runner list
+2018-01-18 18:16:05.531571: BouncePlay - commencing stage 2, the price has gone to 9.03e-06, 25.149700598802365% dip from the top at 9.45e-06 and bottom at 7.78e-06
+2018-01-18 18:16:05.532574: BouncePlay - WILL TRADE: at 8.615e-06 - 8.911e-06, 8.3645e-06 - 8.5865e-06, 8.1975e-06 - 8.419500000000001e-06
+2018-01-18 18:16:05.567667: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:16:05.568169: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:16:06.444326: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:16:06.445329: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:16:09.940260: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:16:09.941765: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:16:09.956303: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:09.958309: ChadAlert - Too long, taking coin out of runners
+2018-01-18 18:16:09.960313: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:16:10.273675: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:16:10.779445: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:16:10.780446: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:16:15.255516: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:16:15.256010: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:16:26.109642: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:16:31.555958: BouncePlay - commencing stage 2, the price has gone to 1.85e-05, 25.37216828478964% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:16:31.556459: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6462999999999998e-05, 1.23775e-05 - 1.3703499999999998e-05, 1.08325e-05 - 1.2158499999999999e-05
+2018-01-18 18:17:26.813528: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:17:33.163510: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:17:33.501396: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:17:33.793172: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:17:34.247379: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:17:35.510149: ChadAlert - adding CTRBTC to bounce list
+2018-01-18 18:17:37.314902: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:17:37.332566: ChadAlert - Playing bounce-play from list: CTRBTC
+2018-01-18 18:17:37.427819: ChadAlert - Playing bounce-play from list: RLCBTC
+2018-01-18 18:17:37.434336: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:17:37.428321: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:17:37.455393: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:17:38.287519: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:17:39.130904: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:17:39.197079: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:17:39.285314: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:17:43.196093: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:17:44.302045: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:17:44.311059: BouncePlay - high, low: 0.00015, 0.00012499
+2018-01-18 18:17:44.314568: BouncePlay - high, low: 0.000209, 0.0001819
+2018-01-18 18:17:44.314066: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:17:44.318078: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:17:44.324596: BouncePlay - high, low: 9.45e-06, 7.78e-06
+2018-01-18 18:17:44.326633: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:17:44.329106: BouncePlay - dip already happened, putting CTRBTC back on the runner list
+2018-01-18 18:17:44.330110: BouncePlay - commencing stage 1, starting the bounce play on POEBTC
+list
+2018-01-18 18:17:44.330110: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:17:44.339134: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:17:44.503470: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:17:45.732852: BouncePlay - high, low: 1.098e-05, 8.27e-06
+2018-01-18 18:17:45.746388: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:17:45.849161: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:17:45.896830: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:17:46.022156: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:18:06.445144: BouncePlay - commencing stage 2, the price has gone to 1.837e-05, 26.21359223300971% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:18:06.553433: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6462999999999998e-05, 1.23775e-05 - 1.3703499999999998e-05, 1.08325e-05 - 1.2158499999999999e-05
+2018-01-18 18:19:23.240879: BouncePlay - new highest price 9.49e-06
+2018-01-18 18:19:23.288538: BouncePlay - maxIncrease 1.7100000000000006e-06
+2018-01-18 18:19:38.536075: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:19:55.760276: BouncePlay - new highest price 9.5e-06
+2018-01-18 18:19:55.761279: BouncePlay - maxIncrease 1.7200000000000005e-06
+2018-01-18 18:21:42.068460: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:21:47.599203: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:21:47.682906: ChadAlert - Playing bounce-play from list: VIBEBTC
+2018-01-18 18:21:47.776154: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:21:47.787684: ChadAlert - Playing bounce-play from list: MTLBTC
+2018-01-18 18:21:47.800218: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:21:47.808741: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:21:47.812752: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:21:47.847875: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:21:47.926052: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:21:47.938586: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:21:48.199728: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:21:48.353927: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:21:48.864463: BouncePlay - high, low: 9.485e-05, 6.725e-05
+2018-01-18 18:21:48.871982: BouncePlay - dip already happened, putting VIBEBTC back on the runner list
+2018-01-18 18:21:48.929637: BouncePlay - high, low: 9.7e-06, 7.78e-06
+2018-01-18 18:21:48.932645: BouncePlay - commencing stage 1, starting the bounce play on POEBTC
+2018-01-18 18:21:48.959718: BouncePlay - high, low: 0.000439, 0.000345
+2018-01-18 18:21:48.961722: BouncePlay - dip already happened, putting MTLBTC back on the runner list
+2018-01-18 18:21:49.026896: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:21:49.028901: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:21:49.033417: BouncePlay - commencing stage 2, the price has gone to 1.789e-05, 29.32038834951456% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:21:49.050170: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6583e-05, 1.23775e-05 - 1.37935e-05, 1.08325e-05 - 1.22485e-05
+2018-01-18 18:21:49.234663: ChadAlert - Playing bounce-play from list: ICNBTC
+2018-01-18 18:21:49.259227: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:21:49.451240: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:21:50.449892: ChadAlert - adding CTRBTC to bounce list
+2018-01-18 18:21:50.834415: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:21:50.996344: BouncePlay - Volume (80.68760634 BTC) did not match parameters: deleting from bounce list
+2018-01-18 18:21:51.050489: BouncePlay - high, low: 0.0205, 0.016599
+2018-01-18 18:21:51.073050: BouncePlay - dip already happened, putting BTGBTC back on the runner list
+2018-01-18 18:21:51.422160: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:21:51.428677: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:21:51.713935: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:21:51.716943: ChadAlert - Playing bounce-play from list: STORJBTC
+2018-01-18 18:21:52.511666: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:21:52.687645: BouncePlay - high, low: 0.000394, 0.000284
+2018-01-18 18:21:52.690158: BouncePlay - commencing stage 1, starting the bounce play on EVXBTC
+2018-01-18 18:21:52.770365: BouncePlay - high, low: 0.00013972, 0.00011016
+2018-01-18 18:21:52.771868: BouncePlay - dip already happened, putting STORJBTC back on the runner list
+2018-01-18 18:21:56.352794: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:21:57.578872: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:21:57.624521: BouncePlay - high, low: 1.126e-05, 8.27e-06
+2018-01-18 18:21:57.633518: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:21:57.955298: BouncePlay - new highest price 9.71e-06
+2018-01-18 18:21:57.978860: BouncePlay - maxIncrease 1.93e-06
+2018-01-18 18:22:05.008304: BouncePlay - new highest price 9.75e-06
+2018-01-18 18:22:05.029330: BouncePlay - maxIncrease 1.9699999999999998e-06
+2018-01-18 18:22:12.762857: BouncePlay - new highest price 1.127e-05
+2018-01-18 18:22:12.808979: BouncePlay - maxIncrease 3e-06
+2018-01-18 18:22:14.194715: BouncePlay - new highest price 9.78e-06
+2018-01-18 18:22:14.264884: BouncePlay - maxIncrease 1.9999999999999995e-06
+2018-01-18 18:22:14.905752: ChadAlert - adding EDOBTC to bounce list
+2018-01-18 18:22:45.062129: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:22:46.787716: ChadAlert - adding EDOBTC to bounce list
+2018-01-18 18:22:46.800250: ChadAlert - Playing bounce-play from list: EDOBTC
+2018-01-18 18:22:46.840356: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:22:46.844868: ChadAlert - Playing bounce-play from list: ICNBTC
+2018-01-18 18:22:46.897508: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:22:46.899012: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:22:47.185776: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 18:22:47.189283: ChadAlert - Playing bounce-play from list: OAXBTC
+2018-01-18 18:22:47.272003: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:22:47.273006: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:22:47.300078: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:22:47.304091: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:22:47.635513: BouncePlay - high, low: 0.0003738, 0.0003155
+2018-01-18 18:22:47.636014: BouncePlay - dip already happened, putting EDOBTC back on the runner list
+2018-01-18 18:22:47.652558: BouncePlay - Volume (80.68760634 BTC) did not match parameters: deleting from bounce list
+2018-01-18 18:22:47.672611: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:22:47.673113: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:22:47.674116: BouncePlay - commencing stage 2, the price has gone to 1.778e-05, 30.032362459546924% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:22:47.674617: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6739e-05, 1.23775e-05 - 1.39105e-05, 1.08325e-05 - 1.23655e-05
+2018-01-18 18:22:48.028558: BouncePlay - high, low: 0.00011, 8.57e-05
+2018-01-18 18:22:48.029561: BouncePlay - dip already happened, putting OAXBTC back on the runner list
+2018-01-18 18:22:48.088718: BouncePlay - high, low: 0.000395, 0.000284
+2018-01-18 18:22:48.090223: BouncePlay - commencing stage 1, starting the bounce play on EVXBTC
+2018-01-18 18:22:50.775890: ChadAlert - Playing bounce-play from list: SNTBTC
+2018-01-18 18:22:50.791431: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:22:50.791932: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:22:51.109788: BouncePlay - new highest price 0.00039741
+2018-01-18 18:22:51.110791: BouncePlay - maxIncrease 0.00011340999999999999
+2018-01-18 18:22:51.253671: ChadAlert - adding CTRBTC to bounce list
+2018-01-18 18:22:51.524200: BouncePlay - high, low: 3.1e-05, 2.56e-05
+2018-01-18 18:22:51.525203: BouncePlay - dip already happened, putting SNTBTC back on the runner list
+2018-01-18 18:22:51.528211: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:22:51.529214: ChadAlert - Playing bounce-play from list: MODBTC
+2018-01-18 18:22:51.679622: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:22:51.695665: BouncePlay - high, low: 0.00039741, 0.000284
+2018-01-18 18:22:51.697169: BouncePlay - commencing stage 1, starting the bounce play on EVXBTC
+2018-01-18 18:22:51.752314: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:22:51.758331: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:22:51.764848: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:22:52.258806: BouncePlay - high, low: 0.0006, 0.0005
+2018-01-18 18:22:52.259307: BouncePlay - dip already happened, putting MODBTC back on the runner list
+2018-01-18 18:22:56.119658: ChadAlert - Playing bounce-play from list: CTRBTC
+2018-01-18 18:22:56.142218: BouncePlay - new highest price 0.000398
+2018-01-18 18:22:56.143221: BouncePlay - maxIncrease 0.000114
+2018-01-18 18:22:56.320714: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:22:56.391917: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:22:56.700285: BouncePlay - new highest price 0.000398
+2018-01-18 18:22:56.794035: BouncePlay - maxIncrease 0.000114
+2018-01-18 18:22:56.993064: BouncePlay - high, low: 0.00015, 0.00012499
+2018-01-18 18:22:56.994067: BouncePlay - dip already happened, putting CTRBTC back on the runner list
+2018-01-18 18:23:01.438445: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:23:01.599611: ChadAlert - adding VIBEBTC to bounce list
+2018-01-18 18:23:01.845478: BouncePlay - new highest price 0.000399
+2018-01-18 18:23:01.845979: BouncePlay - maxIncrease 0.00011499999999999998
+2018-01-18 18:23:02.177861: BouncePlay - new highest price 0.000399
+2018-01-18 18:23:02.178864: BouncePlay - maxIncrease 0.00011499999999999998
+2018-01-18 18:23:02.180872: BouncePlay - high, low: 1.14e-05, 8.27e-06
+2018-01-18 18:23:02.181371: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:23:38.466148: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:23:40.193268: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:23:40.207807: ChadAlert - Playing bounce-play from list: ICNBTC
+2018-01-18 18:23:40.745236: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:23:40.760777: ChadAlert - Playing bounce-play from list: STORJBTC
+2018-01-18 18:23:41.224595: BouncePlay - Volume (80.77802785 BTC) did not match parameters: deleting from bounce list
+2018-01-18 18:23:41.638698: BouncePlay - high, low: 0.00013972, 0.00011016
+2018-01-18 18:23:41.639197: BouncePlay - dip already happened, putting STORJBTC back on the runner list
+2018-01-18 18:23:44.591864: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:23:44.592867: ChadAlert - Playing bounce-play from list: SNTBTC
+2018-01-18 18:23:44.885143: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:23:44.886147: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:23:44.903193: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:23:44.904195: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:23:44.938285: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:23:44.940792: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:23:45.108763: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:23:45.109765: ChadAlert - Playing bounce-play from list: TNBBTC
+2018-01-18 18:23:45.411591: BouncePlay - high, low: 3.1e-05, 2.56e-05
+2018-01-18 18:23:45.412093: BouncePlay - dip already happened, putting SNTBTC back on the runner list
+2018-01-18 18:23:45.654769: BouncePlay - high, low: 0.0205, 0.016599
+2018-01-18 18:23:45.655771: BouncePlay - dip already happened, putting BTGBTC back on the runner list
+2018-01-18 18:23:45.699387: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:23:45.700390: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:23:45.700892: BouncePlay - commencing stage 2, the price has gone to 1.83e-05, 26.666666666666654% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:23:45.701393: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6739e-05, 1.23775e-05 - 1.39105e-05, 1.08325e-05 - 1.23655e-05
+2018-01-18 18:23:45.739001: BouncePlay - high, low: 1.14e-05, 8.27e-06
+2018-01-18 18:23:45.739502: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:23:45.977645: BouncePlay - high, low: 1.195e-05, 8.03e-06
+2018-01-18 18:23:45.978647: BouncePlay - commencing stage 1, starting the bounce play on TNBBTC
+2018-01-18 18:23:45.979650: BouncePlay - commencing stage 2, the price has gone to 1.095e-05, 25.510204081632658% dip from the top at 1.195e-05 and bottom at 8.03e-06
+2018-01-18 18:23:45.981657: BouncePlay - WILL TRADE: at 9.990000000000001e-06 - 1.0718000000000001e-05, 9.401999999999999e-06 - 9.948e-06, 9.01e-06 - 9.556000000000001e-06
+2018-01-18 18:23:49.334626: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:23:49.357187: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:23:49.737717: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:23:49.774325: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:23:50.024515: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:23:50.058606: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:23:50.147342: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:23:50.147844: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:23:50.148846: BouncePlay - commencing stage 2, the price has gone to 1.832e-05, 26.537216828478954% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:23:50.149848: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6739e-05, 1.23775e-05 - 1.39105e-05, 1.08325e-05 - 1.23655e-05
+2018-01-18 18:23:50.160878: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:23:50.208778: BouncePlay - high, low: 1.14e-05, 8.27e-06
+2018-01-18 18:23:50.209779: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:23:54.853097: ChadAlert - adding EDOBTC to bounce list
+2018-01-18 18:24:52.706050: ChadAlert - adding RLCBTC to bounce list
+2018-01-18 18:24:52.865230: BouncePlay - new highest price 1.142e-05
+2018-01-18 18:24:52.866137: BouncePlay - maxIncrease 3.1500000000000003e-06
+2018-01-18 18:24:53.459332: BouncePlay - new highest price 1.142e-05
+2018-01-18 18:24:53.460321: BouncePlay - maxIncrease 3.1500000000000003e-06
+2018-01-18 18:25:08.884240: BouncePlay - new highest price 1.144e-05
+2018-01-18 18:25:08.885242: BouncePlay - maxIncrease 3.17e-06
+2018-01-18 18:25:09.481373: BouncePlay - new highest price 1.144e-05
+2018-01-18 18:25:09.482373: BouncePlay - maxIncrease 3.17e-06
+2018-01-18 18:25:13.765537: ChadAlert - adding OAXBTC to bounce list
+2018-01-18 18:25:45.392173: ChadAlert - adding CTRBTC to bounce list
+2018-01-18 18:26:17.053313: ChadAlert - adding DLTBTC to bounce list
+2018-01-18 18:34:51.003980: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:34:52.404752: ChadAlert - adding MTLBTC to bounce list
+2018-01-18 18:34:52.406756: ChadAlert - Playing bounce-play from list: MTLBTC
+2018-01-18 18:34:52.523579: ChadAlert - adding EVXBTC to bounce list
+2018-01-18 18:34:52.524582: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:34:52.693030: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:34:52.695537: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:34:52.952729: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:34:52.953733: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:34:53.215940: BouncePlay - high, low: 0.000439, 0.000345
+2018-01-18 18:34:53.217443: BouncePlay - dip already happened, putting MTLBTC back on the runner list
+2018-01-18 18:34:53.266072: BouncePlay - high, low: 0.000405, 0.000284
+2018-01-18 18:34:53.266574: BouncePlay - commencing stage 1, starting the bounce play on EVXBTC
+2018-01-18 18:34:53.267103: BouncePlay - commencing stage 2 on EVXBTC, the price has gone to 0.00037232, 27.008264462809922% dip from the top at 0.000405 and bottom at 0.000284
+2018-01-18 18:34:53.267576: BouncePlay - WILL TRADE: at 0.00034449999999999997 - 0.00036409199999999994, 0.00032635 - 0.000341044, 0.00031425 - 0.000328944
+2018-01-18 18:34:53.391144: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:34:53.392146: ChadAlert - Playing bounce-play from list: MODBTC
+2018-01-18 18:34:53.538034: BouncePlay - high, low: 1.145e-05, 8.27e-06
+2018-01-18 18:34:53.538535: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:34:53.539037: BouncePlay - commencing stage 2 on FUNBTC, the price has gone to 1.05e-05, 29.87421383647802% dip from the top at 1.145e-05 and bottom at 8.27e-06
+2018-01-18 18:34:53.539538: BouncePlay - WILL TRADE: at 9.86e-06 - 1.036e-05, 9.383e-06 - 9.758e-06, 9.065e-06 - 9.440000000000001e-06
+2018-01-18 18:34:53.800214: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:34:53.800716: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:34:54.157340: BouncePlay - high, low: 0.0006, 0.0005
+2018-01-18 18:34:54.157841: BouncePlay - dip already happened, putting MODBTC back on the runner list
+2018-01-18 18:34:56.620071: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:34:56.663186: ChadAlert - Playing bounce-play from list: EVXBTC
+2018-01-18 18:34:59.758637: ChadAlert - adding ICNBTC to bounce list
+2018-01-18 18:34:59.793736: ChadAlert - adding SNTBTC to bounce list
+2018-01-18 18:35:00.040887: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:35:00.228385: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:35:00.270999: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:35:00.282031: ChadAlert - adding CDTBTC to bounce list
+2018-01-18 18:35:07.282401: ChadAlert - adding STORJBTC to bounce list
+2018-01-18 18:35:54.884275: BouncePlay - commencing stage 2 on CNDBTC, the price has gone to 1.852e-05, 25.24271844660194% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:35:54.885278: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.6739e-05, 1.23775e-05 - 1.39105e-05, 1.08325e-05 - 1.23655e-05
+2018-01-18 18:43:34.639702: ChadAlert - RESETTING SETS
+2018-01-18 18:52:24.063177: ChadAlert - RESETTING SETS
+2018-01-18 18:57:52.468324: ChadAlert - ----------------------------------------------------------------------------
+2018-01-18 18:57:54.333782: ChadAlert - adding FUNBTC to bounce list
+2018-01-18 18:57:54.335787: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:57:54.596982: ChadAlert - adding CNDBTC to bounce list
+2018-01-18 18:57:54.603499: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:57:54.984014: ChadAlert - adding POEBTC to bounce list
+2018-01-18 18:57:54.985013: ChadAlert - Playing bounce-play from list: POEBTC
+2018-01-18 18:57:54.989525: ChadAlert - adding MODBTC to bounce list
+2018-01-18 18:57:54.994037: ChadAlert - Playing bounce-play from list: MODBTC
+2018-01-18 18:57:55.181536: BouncePlay - high, low: 1.145e-05, 8.27e-06
+2018-01-18 18:57:55.182538: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:57:55.183040: BouncePlay - commencing stage 2 on FUNBTC, the price has gone to 1.04e-05, 33.01886792452831% dip from the top at 1.145e-05 and bottom at 8.27e-06
+2018-01-18 18:57:55.183541: BouncePlay - WILL TRADE: at 9.86e-06 - 1.0496e-05, 9.383e-06 - 1.0003099999999999e-05, 9.065e-06 - 9.7805e-06
+2018-01-18 18:57:55.439715: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:57:55.440712: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:57:55.442714: BouncePlay - commencing stage 2 on CNDBTC, the price has gone to 1.671e-05, 36.95792880258899% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:57:55.443717: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.7785e-05, 1.23775e-05 - 1.539025e-05, 1.08325e-05 - 1.430875e-05
+2018-01-18 18:57:55.780110: BouncePlay - high, low: 1.05e-05, 7.78e-06
+2018-01-18 18:57:55.781112: BouncePlay - dip already happened, putting POEBTC back on the runner list
+2018-01-18 18:57:55.804186: BouncePlay - high, low: 0.0006, 0.0005
+2018-01-18 18:57:55.805176: BouncePlay - dip already happened, putting MODBTC back on the runner list
+2018-01-18 18:57:58.147861: ChadAlert - Playing bounce-play from list: FUNBTC
+2018-01-18 18:57:58.254657: ChadAlert - Playing bounce-play from list: CNDBTC
+2018-01-18 18:58:00.200948: ChadAlert - adding BTGBTC to bounce list
+2018-01-18 18:58:00.203957: ChadAlert - Playing bounce-play from list: BTGBTC
+2018-01-18 18:58:00.348842: BouncePlay - high, low: 1.145e-05, 8.27e-06
+2018-01-18 18:58:00.352852: BouncePlay - commencing stage 1, starting the bounce play on FUNBTC
+2018-01-18 18:58:00.355359: BouncePlay - commencing stage 2 on FUNBTC, the price has gone to 1.04e-05, 33.01886792452831% dip from the top at 1.145e-05 and bottom at 8.27e-06
+2018-01-18 18:58:00.365387: BouncePlay - high, low: 2.242e-05, 6.97e-06
+2018-01-18 18:58:00.366889: BouncePlay - commencing stage 1, starting the bounce play on CNDBTC
+2018-01-18 18:58:00.367391: BouncePlay - WILL TRADE: at 9.86e-06 - 1.0496e-05, 9.383e-06 - 1.0003099999999999e-05, 9.065e-06 - 9.7805e-06
+2018-01-18 18:58:00.368895: BouncePlay - commencing stage 2 on CNDBTC, the price has gone to 1.67e-05, 37.02265372168284% dip from the top at 2.242e-05 and bottom at 6.97e-06
+2018-01-18 18:58:00.371401: BouncePlay - WILL TRADE: at 1.4694999999999999e-05 - 1.7785e-05, 1.23775e-05 - 1.539025e-05, 1.08325e-05 - 1.430875e-05
+2018-01-18 18:58:03.579962: ChadAlert - adding TNBBTC to bounce list
+2018-01-18 18:58:04.388652: ChadAlert - adding CDTBTC to bounce list
