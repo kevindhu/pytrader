@@ -43,7 +43,8 @@ class ChadAlert:
         lock = threading.Lock()
 
         allPrices = self.client.get_all_tickers()
-        self.logger.log("----------------------------------------------------------------------------")
+        self.logger.log("STARTED CHAD ALERT ----------------------------"
+                        "------------------------------------------------")
 
         while True:
             self.loops += 1
