@@ -23,6 +23,7 @@ class ChadAlert:
         self.tenMinKlines = {}
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.bouncePlays = set()
+        self.bouncePlaying = set()
         self.blacklist = set()
         self.runners = {}
         self.serverTime = 0.0
@@ -57,7 +58,7 @@ class ChadAlert:
 
             # resets every 100 loops
             if self.loops % 100 == 0:
-                #self.logger.log("RESETTING SETS")
+                # self.logger.log("RESETTING SETS")
                 self.fiveHourChad = set()
                 self.tenMinChad = set()
             time.sleep(5)
@@ -116,7 +117,7 @@ class ChadAlert:
             # format(coin, str(hourIncrease * 100), str(currPrice)))
             self.fiveHourChad.add(coin)
 
-        if hourIncrease > 0.1 and (coin not in self.bouncePlays) and \
+        if hourIncrease > 0.1 and (coin not in self.bouncePlays) and (coin not in self.bouncePlaying) and \
                 (coin not in self.runners) and (coin not in self.blacklist):
             self.logger.log("adding {0} to bounce list".format(coin))
             self.bouncePlays.add(coin)
@@ -134,9 +135,11 @@ class ChadAlert:
                 self.bouncePlays.add(coin)
                 self.runners.pop(coin, 0)
 
-        if coin in self.bouncePlays and self.bouncePlayCount < 5:
-            with lock:
-                self.bouncePlayCount += 1
+        canPlay = False
+
+        if coin in self.bouncePlays and (coin not in self.bouncePlaying) and self.bouncePlayCount < 5:
+            self.bouncePlayCount += 1
+            self.bouncePlays.remove(coin)
             self.logger.log("Playing bounce-play from list: {0}".format(coin))
             bouncePlay = BouncePlay(coin, self)
 

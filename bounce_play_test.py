@@ -52,7 +52,7 @@ class BouncePlay:
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
         if not firstKline or volume < 100:
             self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list".format(volume))
-            self.chadAlert.bouncePlays.remove(self.coin)
+            self.chadAlert.bouncePlaying.remove(self.coin)
             self.chadAlert.bouncePlayCount -= 1
             self.chadAlert.blacklist.add(self.coin)
             return
@@ -64,17 +64,19 @@ class BouncePlay:
         for kline in self.lastKlines:
             localHigh = float(kline[2])
             localLow = float(kline[3])
+            open = float(kline[1])
+            close = float(kline[4])
 
             if highestPrice < localHigh:
                 highestPrice = localHigh
-                lowestHistDip = highestPrice
+                lowestHistDip = localHigh
 
-            if lowestHistDip > localLow:
+            if open > close and lowestHistDip > localLow:
                 lowestHistDip = localLow
 
         lowestDip = lowestHistDip
 
-        self.logger.log("high, low: {0}, {1}".format(highestPrice, lowestPrice))
+        self.logger.log("high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip))
         if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.4:
             self.logger.log("dip already happened, putting {0} back on the runner list".format(self.coin))
             self.stage = 6
@@ -176,7 +178,6 @@ class BouncePlay:
             elif self.stage == 6:
                 self.chadAlert.addToRunners(
                     {'coin': self.coin, 'low': lowestPrice, 'high': highestPrice, 'time': firstKline[0]})
-                self.chadAlert.bouncePlays.remove(self.coin)
                 self.chadAlert.bouncePlayCount -= 1
                 return
             time.sleep(1)

@@ -1,0 +1,10 @@
+2018-01-20 22:54:57.378434: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-20 22:54:59.088898: adding MTLBTC to bounce list
+2018-01-20 22:54:59.088898: Playing bounce-play from list: MTLBTC
+2018-01-20 22:55:11.380765: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-20 22:55:19.528301: adding MTLBTC to bounce list
+2018-01-20 22:55:19.529289: Playing bounce-play from list: MTLBTC
+2018-01-20 22:55:19.547337: adding XVGBTC to bounce list
+2018-01-20 22:55:19.548340: Playing bounce-play from list: XVGBTC
+2018-01-20 22:57:44.809443: adding VIBEBTC to bounce list
+2018-01-20 22:57:44.825069: Playing bounce-play from list: VIBEBTC
