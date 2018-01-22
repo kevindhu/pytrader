@@ -17,7 +17,6 @@ class ChadAlert:
         self.logger = Logger("ChadAlert", "")
         self.workers = []
         self.queue = Queue()
-        self.fiveHourChad = set()
         self.tenMinChad = set()
         self.hourKlines = {}
         self.tenMinKlines = {}
@@ -59,7 +58,6 @@ class ChadAlert:
             # resets every 100 loops
             if self.loops % 100 == 0:
                 # self.logger.log("RESETTING SETS")
-                self.fiveHourChad = set()
                 self.tenMinChad = set()
             time.sleep(5)
 
@@ -88,7 +86,7 @@ class ChadAlert:
             if coin not in self.hourKlines:
                 # self.logger.log("2 HR CALLING " + coin)
                 newHourKlines = self.client.get_historical_klines(coin,
-                                                                  Client.KLINE_INTERVAL_1HOUR,
+                                                                  Client.KLINE_INTERVAL_15MINUTE,
                                                                   "5 hours ago PT")
                 with lock:
                     self.hourKlines[coin] = newHourKlines
@@ -112,10 +110,6 @@ class ChadAlert:
         hourIncrease = (currPrice - hourMinLow) / hourMinLow
         tenMinIncrease = (currPrice - tenMinMinLow) / tenMinMinLow
 
-        if hourIncrease > 0.1 and (coin not in self.fiveHourChad):
-            # self.logger.log("NICE! THE PRICE FOR {0} has CHADSTEPPED {1}% in the past five hours! (price : {2})".
-            # format(coin, str(hourIncrease * 100), str(currPrice)))
-            self.fiveHourChad.add(coin)
 
         if hourIncrease > 0.1 and (coin not in self.bouncePlays) and (coin not in self.bouncePlaying) and \
                 (coin not in self.runners) and (coin not in self.blacklist):
@@ -140,6 +134,7 @@ class ChadAlert:
         if coin in self.bouncePlays and (coin not in self.bouncePlaying) and self.bouncePlayCount < 5:
             self.bouncePlayCount += 1
             self.bouncePlays.remove(coin)
+            self.bouncePlaying.add(coin)
             self.logger.log("Playing bounce-play from list: {0}".format(coin))
             bouncePlay = BouncePlay(coin, self)
 
@@ -159,6 +154,7 @@ class ChadAlert:
         with lock:
             if info["coin"] not in self.runners:
                 self.runners[info["coin"]] = info
+                self.logger.log("adding {0} to the runner list".format(info["coin"]))
 
 
 ChadAlert().run()

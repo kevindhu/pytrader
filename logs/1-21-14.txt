@@ -1,0 +1,6 @@
+2018-01-21 14:17:28.993891: adding CDTBTC to bounce list
+2018-01-21 14:17:29.002741: Playing bounce-play from list: CDTBTC
+2018-01-21 14:30:07.689077: adding ARKBTC to bounce list
+2018-01-21 14:30:07.697429: Playing bounce-play from list: ARKBTC
+2018-01-21 14:40:49.105377: adding NULSBTC to bounce list
+2018-01-21 14:40:49.112396: Playing bounce-play from list: NULSBTC

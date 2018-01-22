@@ -1,0 +1,9 @@
+2018-01-21 10:19:11.013055: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 10:19:32.539897: adding SUBBTC to bounce list
+2018-01-21 10:19:32.539897: Playing bounce-play from list: SUBBTC
+2018-01-21 10:21:21.784318: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 10:21:28.020134: adding SUBBTC to bounce list
+2018-01-21 10:21:28.021138: Playing bounce-play from list: SUBBTC
+2018-01-21 10:22:30.580593: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 10:22:41.742179: adding SUBBTC to bounce list
+2018-01-21 10:22:41.743181: Playing bounce-play from list: SUBBTC

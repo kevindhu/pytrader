@@ -1,0 +1,54 @@
+2018-01-21 12:13:30.333598: adding CDTBTC to bounce list
+2018-01-21 12:13:30.333598: Playing bounce-play from list: CDTBTC
+2018-01-21 12:13:30.333598: adding TNBBTC to bounce list
+2018-01-21 12:13:30.333598: Playing bounce-play from list: TNBBTC
+2018-01-21 12:13:30.333598: adding VIBEBTC to bounce list
+2018-01-21 12:13:30.333598: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:22:39.127512: Adding runner back into bouncePlay list
+2018-01-21 12:22:39.129018: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:22:44.407885: adding VIBEBTC to bounce list
+2018-01-21 12:22:44.408888: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:22:49.698654: adding VIBEBTC to bounce list
+2018-01-21 12:22:49.699156: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:22:54.980617: adding VIBEBTC to bounce list
+2018-01-21 12:22:54.981619: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:23:00.272959: adding VIBEBTC to bounce list
+2018-01-21 12:23:00.274462: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:23:05.541894: adding VIBEBTC to bounce list
+2018-01-21 12:25:45.428345: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 12:25:46.998518: adding TNBBTC to bounce list
+2018-01-21 12:25:47.004033: Playing bounce-play from list: TNBBTC
+2018-01-21 12:25:47.606134: adding SUBBTC to bounce list
+2018-01-21 12:25:47.606635: Playing bounce-play from list: SUBBTC
+2018-01-21 12:26:02.027944: adding VIBEBTC to bounce list
+2018-01-21 12:26:02.028946: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:26:07.034968: adding VIBEBTC to bounce list
+2018-01-21 12:26:07.035969: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:26:12.326804: adding VIBEBTC to bounce list
+2018-01-21 12:26:12.327800: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:26:17.633572: adding VIBEBTC to bounce list
+2018-01-21 12:26:17.635576: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:26:22.917840: adding VIBEBTC to bounce list
+2018-01-21 12:26:22.919839: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:26:28.225448: adding VIBEBTC to bounce list
+2018-01-21 12:30:19.793980: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 12:30:21.811816: adding SUBBTC to bounce list
+2018-01-21 12:30:21.811816: Playing bounce-play from list: SUBBTC
+2018-01-21 12:30:26.518633: adding TNBBTC to bounce list
+2018-01-21 12:30:26.519636: Playing bounce-play from list: TNBBTC
+2018-01-21 12:30:26.624228: adding VIBEBTC to bounce list
+2018-01-21 12:30:26.624228: Playing bounce-play from list: VIBEBTC
+2018-01-21 12:34:08.259082: adding MCOBTC to bounce list
+2018-01-21 12:34:08.261088: Playing bounce-play from list: MCOBTC
+2018-01-21 12:34:50.555858: Adding runner back into bouncePlay list
+2018-01-21 12:41:11.711271: adding CDTBTC to bounce list
+2018-01-21 12:41:11.711271: Playing bounce-play from list: CDTBTC
+2018-01-21 12:56:51.362896: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 12:56:56.231742: adding MCOBTC to bounce list
+2018-01-21 12:56:56.244779: Playing bounce-play from list: MCOBTC
+2018-01-21 12:56:59.686909: adding SUBBTC to bounce list
+2018-01-21 12:56:59.702506: Playing bounce-play from list: SUBBTC
+2018-01-21 12:56:59.941587: adding TNBBTC to bounce list
+2018-01-21 12:56:59.941587: Playing bounce-play from list: TNBBTC
+2018-01-21 12:56:59.982854: adding VIBEBTC to bounce list
+2018-01-21 12:56:59.982854: Playing bounce-play from list: VIBEBTC

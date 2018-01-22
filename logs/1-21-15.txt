@@ -1,0 +1,13 @@
+2018-01-21 15:49:34.359467: STARTED CHAD ALERT ----------------------------------------------------------------------------
+2018-01-21 15:49:36.145192: adding LENDBTC to bounce list
+2018-01-21 15:49:36.147197: Playing bounce-play from list: LENDBTC
+2018-01-21 15:49:37.022525: adding LENDBTC to the runner list
+2018-01-21 15:49:41.170587: adding DNTBTC to bounce list
+2018-01-21 15:49:41.172592: Playing bounce-play from list: DNTBTC
+2018-01-21 15:49:41.487430: adding VIBEBTC to bounce list
+2018-01-21 15:49:41.488432: Playing bounce-play from list: VIBEBTC
+2018-01-21 15:49:42.057945: adding DNTBTC to the runner list
+2018-01-21 15:49:42.335144: adding VIBEBTC to the runner list
+2018-01-21 15:54:25.689954: adding MTLBTC to bounce list
+2018-01-21 15:54:25.697473: Playing bounce-play from list: MTLBTC
+2018-01-21 15:54:26.525013: adding MTLBTC to the runner list

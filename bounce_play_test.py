@@ -24,7 +24,7 @@ class BouncePlay:
         self.mainSellOrder = False
 
         self.lastKlines = self.client.get_historical_klines(self.coin,
-                                                            Client.KLINE_INTERVAL_1HOUR,
+                                                            Client.KLINE_INTERVAL_15MINUTE,
                                                             "24 hours ago PT")
 
         self.run()
@@ -51,7 +51,8 @@ class BouncePlay:
         ticker = self.client.get_ticker(symbol=self.coin)
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
         if not firstKline or volume < 100:
-            self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list".format(volume))
+            self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
+                            "adding to blacklist".format(volume))
             self.chadAlert.bouncePlaying.remove(self.coin)
             self.chadAlert.bouncePlayCount -= 1
             self.chadAlert.blacklist.add(self.coin)
@@ -76,12 +77,13 @@ class BouncePlay:
 
         lowestDip = lowestHistDip
 
-        self.logger.log("high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip))
+        self.logger.log(
+            "{3}: high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
         if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.4:
             self.logger.log("dip already happened, putting {0} back on the runner list".format(self.coin))
             self.stage = 6
         else:
-            self.logger.log("commencing stage 1, starting the bounce play on {0}".format(self.coin))
+            self.logger.log("-------commencing stage 1, starting the bounce play on {0}------".format(self.coin))
             self.stage = 1
 
         while True:
@@ -93,7 +95,8 @@ class BouncePlay:
 
             # if sell is satisfied
             if self.mainSellOrder and price > self.mainSellOrder["price"]:
-                self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids--------".format(self.mainSellOrder["price"], self.coin))
+                self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids--------".format(
+                    self.mainSellOrder["price"], self.coin))
                 # cancel any bids
                 if self.mainBuyOrder:
                     self.client.cancel_order(self.mainBuyOrder["orderId"])
@@ -111,8 +114,8 @@ class BouncePlay:
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage > 25:
                     self.logger.log(
-                        "commencing stage 2 on {4}, the price has gone to {0}, "
-                        "{3}% dip from the top at {1} and bottom at {2}"
+                        "---------commencing stage 2 on {4}, the price has gone to {0}, "
+                        "{3}% dip from the top at {1} and bottom at {2}-----------"
                             .format(price, highestPrice, lowestPrice, percentage, self.coin))
 
                     firstBuyPrice = (lowestPrice + highestPrice) / 2
@@ -143,23 +146,26 @@ class BouncePlay:
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
                     self.stage = 3
-                    self.logger.log("-------commencing stage 3, now in the trade at {0}, will attempt to sell at {1}----------".
-                                    format(firstBuyPrice, firstSellPrice))
+                    self.logger.log(
+                        "-------commencing stage 3, now in the trade at {0}, will attempt to sell at {1}----------".
+                            format(firstBuyPrice, firstSellPrice))
                     self.logreceipt.log("BOUGHT AT {0}".format(firstBuyPrice))
 
             elif self.stage == 3:
                 if price < secondBuyPrice:
                     # cancel previous order sell
-                    self.logger.log("------commencing stage 4, now in the trade at {0}, will attempt to sell at {1}---------".
-                                    format(secondBuyPrice, secondSellPrice))
-                    self.logreceipt.log("BOUGHT AT {0}".format(secondBuyPrice))
+                    self.logger.log(
+                        "------commencing stage 4, now in the trade at {0}, will attempt to sell at {1}---------".
+                            format(secondBuyPrice, secondSellPrice))
+                    self.logreceipt.log("BOUGHT {1} AT {0}".format(secondBuyPrice, self.coin))
                     self.stage = 4
 
             elif self.stage == 4:
                 if price < secondBuyPrice:
                     # cancel previous order sell
-                    self.logger.log("-------commencing stage 5, now in the trade at {0}, will attempt to sell at {1}-------".
-                                    format(thirdBuyPrice, thirdSellPrice))
+                    self.logger.log(
+                        "-------commencing stage 5, now in the trade at {0}, will attempt to sell at {1}-------".
+                            format(thirdBuyPrice, thirdSellPrice))
                     self.logreceipt.log("BOUGHT AT {0}".format(thirdBuyPrice))
                     self.stage = 5
 
