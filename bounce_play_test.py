@@ -123,9 +123,9 @@ class BouncePlay:
                     secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.6)
                     thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.5)
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.05)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.1)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.15)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.15)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.2)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.3)
 
                     self.mainBuyOrder = firstBuyPrice
 
