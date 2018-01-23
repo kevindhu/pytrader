@@ -118,13 +118,13 @@ class BouncePlay:
                         "{3}% dip from the top at {1} and bottom at {2}-----------"
                             .format(price, highestPrice, lowestPrice, percentage, self.coin))
 
-                    firstBuyPrice = (lowestPrice + highestPrice) / 2
-                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.35)
-                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.25)
+                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.75)
+                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.5)
+                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.4)
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.2)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.3)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.35)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.05)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.1)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.12)
 
                     self.logger.log("WILL TRADE: at {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
