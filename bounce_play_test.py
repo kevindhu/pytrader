@@ -20,6 +20,7 @@ class BouncePlay:
         self.firstBuyDone = False
         self.secondBuyDone = False
         self.thirdBuyDone = False
+        self.mainBought = False
         self.mainBuyOrder = False
         self.mainSellOrder = False
         self.firstDeduction = False
@@ -81,7 +82,7 @@ class BouncePlay:
 
         self.logger.log(
             "{3}: high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
-        if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.4:
+        if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.15:
             self.logger.log("dip already happened, putting {0} back on the runner list".format(self.coin))
             self.stage = 6
         else:
@@ -101,7 +102,8 @@ class BouncePlay:
                     self.mainSellOrder, self.coin))
                 # cancel any bids
                 # self.client.cancel_order(self.mainBuyOrder["orderId"])
-                self.logreceipt.log("SOLD AT {0}".format(self.mainSellOrder))
+                profit = 1000 * (self.mainSellOrder / self.mainBought - 1)
+                self.logreceipt.log("SOLD AT {0} for ${1} profit".format(self.mainSellOrder, profit))
                 self.stage = 6
 
             if self.stage == 1:
@@ -119,13 +121,13 @@ class BouncePlay:
                         "{3}% dip from the top at {1} and bottom at {2}-----------"
                             .format(price, highestPrice, lowestPrice, percentage, self.coin))
 
-                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.75)
+                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.7)
                     secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.6)
                     thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.5)
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.15)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.2)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.3)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.2)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.28)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.35)
 
                     self.mainBuyOrder = firstBuyPrice
 
@@ -153,6 +155,7 @@ class BouncePlay:
                         "-------commencing stage 3, now in the trade at {0}, will attempt to sell at {1}----------".
                             format(firstBuyPrice, firstSellPrice))
                     self.logreceipt.log("BOUGHT AT {0}".format(firstBuyPrice, self.coin))
+                    self.mainBought = self.mainBuyOrder
                     self.mainBuyOrder = secondBuyPrice
                     self.mainSellOrder = firstSellPrice
 
@@ -164,19 +167,21 @@ class BouncePlay:
                         "------commencing stage 4, now in the trade at {0}, will attempt to sell at {1}---------".
                             format(secondBuyPrice, secondSellPrice))
                     self.logreceipt.log("BOUGHT AT {0}".format(secondBuyPrice, self.coin))
+                    self.mainBought = (self.mainBuyOrder + self.mainBought) / 2
                     self.mainBuyOrder = thirdBuyPrice
                     self.mainSellOrder = secondSellPrice
                     self.stage = 4
 
             elif self.stage == 4:
-                if price < secondBuyPrice:
+                if price < thirdBuyPrice:
                     # cancel previous order sell
                     self.logger.log(
                         "-------commencing stage 5, now in the trade at {0}, will attempt to sell at {1}-------".
                             format(thirdBuyPrice, thirdSellPrice))
                     self.logreceipt.log("BOUGHT AT {0}".format(thirdBuyPrice))
+                    self.mainBought = (self.mainBuyOrder + self.mainBought) / 2
                     self.mainBuyOrder = False
-                    self.mainSellOrder = thirdBuyPrice
+                    self.mainSellOrder = thirdSellPrice
                     self.stage = 5
 
             elif self.stage == 5:

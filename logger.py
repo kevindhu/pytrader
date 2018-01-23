@@ -11,8 +11,12 @@ class Logger:
         print(text)
         date = datetime.datetime.now()
         if self.coin != "":
-            dir = "logs/{0}-{1}/{2}.txt".format(str(date.month), str(date.day), self.coin)
-            file = "logs/{0}-{1}/".format(str(date.month), str(date.day))
+            if self.coin.endswith("receipt"):
+                dir = "logs/{0}-{1}/receipts/{2}.txt".format(str(date.month), str(date.day), self.coin)
+                file = "logs/{0}-{1}/receipts/".format(str(date.month), str(date.day))
+            else:
+                dir = "logs/{0}-{1}/{2}.txt".format(str(date.month), str(date.day), self.coin)
+                file = "logs/{0}-{1}/".format(str(date.month), str(date.day))
             if not os.path.exists(file):
                 os.makedirs(file)
         else:
