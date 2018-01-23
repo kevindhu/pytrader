@@ -98,10 +98,10 @@ class BouncePlay:
             # if sell is satisfied
             if self.mainSellOrder and price > self.mainSellOrder:
                 self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids--------".format(
-                    self.mainSellOrder["price"], self.coin))
+                    self.mainSellOrder, self.coin))
                 # cancel any bids
                 # self.client.cancel_order(self.mainBuyOrder["orderId"])
-                self.logreceipt.log("SOLD AT {0}".format(self.mainSellOrder["price"]))
+                self.logreceipt.log("SOLD AT {0}".format(self.mainSellOrder))
                 self.stage = 6
 
             if self.stage == 1:
