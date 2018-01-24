@@ -7,6 +7,7 @@ API_KEY = ""
 API_SECRET = ""
 NUM_THREADS = 100
 
+flag = False
 
 class BouncePlay:
     def __init__(self, coin, chadAlert):
@@ -56,8 +57,7 @@ class BouncePlay:
         if not firstKline or volume < 100:
             self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
                             "adding to blacklist".format(volume))
-            self.chadAlert.bouncePlaying.remove(self.coin)
-            self.chadAlert.bouncePlayCount -= 1
+            self.chadAlert.removeBouncePlay(self.coin)
             self.chadAlert.blacklist.add(self.coin)
             return
 
@@ -82,7 +82,7 @@ class BouncePlay:
 
         self.logger.log(
             "{3}: high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
-        if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.15:
+        if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
             self.logger.log("dip already happened, putting {0} back on the runner list".format(self.coin))
             self.stage = 6
         else:
@@ -90,6 +90,11 @@ class BouncePlay:
             self.stage = 1
 
         while True:
+            if self.coin not in self.chadAlert.bouncePlaying:
+                self.logger.log("CHAD ALERT STOPPED US BECAUSE A BETTER COIN WAS PLAYABLE!")
+                return
+
+
             loops += 1
             price = self.chadAlert.getPrice(self.coin)
 
@@ -146,7 +151,13 @@ class BouncePlay:
                 if self.chadAlert.serverTime - firstKline[0] <= 600:
                     self.logger.log("bounce has happened too soon, cannot play; will return coin back to runner list")
                     # go to stage 6 - put it back on runner list
+                    self.stage = 6
                     return
+
+                if price - lowestDip > (highestPrice - lowestDip) * 0.35:
+                    self.logger.log("bounce just happened, putting {0} back on the runner list".format(self.coin))
+                    self.stage = 6
+
 
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:

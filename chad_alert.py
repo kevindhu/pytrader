@@ -6,6 +6,7 @@ from queue import Queue
 import time
 from bounce_play_test import BouncePlay
 from logger import Logger
+import operator
 
 API_KEY = ""
 API_SECRET = ""
@@ -17,18 +18,18 @@ class ChadAlert:
         self.logger = Logger("ChadAlert", "")
         self.workers = []
         self.queue = Queue()
-        self.tenMinChad = set()
         self.hourKlines = {}
-        self.tenMinKlines = {}
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
-        self.bouncePlays = set()
-        self.bouncePlaying = set()
         self.blacklist = set()
         self.runners = {}
         self.serverTime = 0.0
         self.prices = {}
         self.loops = 0
         self.bouncePlayCount = 0
+
+        self.bounceQueue = {}
+        self.bouncePlaying = {}
+        self.bouncePlayObjs = {}
 
     def run(self):
         for worker_id in range(NUM_THREADS):
@@ -55,16 +56,8 @@ class ChadAlert:
                     self.prices[ticker['symbol']] = float(ticker['price'])
                     self.queue.put(ticker)
 
-            # resets every 100 loops
-            if self.loops % 100 == 0:
-                # self.logger.log("RESETTING SETS")
-                self.tenMinChad = set()
-            time.sleep(5)
-
             if self.loops % 4000 == 0:
                 self.logger.log("resetting blacklist")
-
-            # self.logger.log(len(self.tenMinKlines))
 
     def process_queue(self, worker_id):
         while True:
@@ -91,30 +84,23 @@ class ChadAlert:
                 with lock:
                     self.hourKlines[coin] = newHourKlines
 
-            # update every 10 minutes
-            if coin not in self.tenMinKlines:
-                # self.logger.log("10 MIN CALLING " + coin)
-                newTenMinKlines = self.client.get_historical_klines(coin,
-                                                                    Client.KLINE_INTERVAL_5MINUTE,
-                                                                    "10 minutes ago PT")
-                with lock:
-                    self.tenMinKlines[coin] = newTenMinKlines
-
         except TypeError:
             # self.logger.log("TYPEERROR SHIT FOR " + coin + " in " + TIME_SCALE)
             return
 
         hourMinLow = self.getMinLow(self.hourKlines[coin])
-        tenMinMinLow = self.getMinLow(self.tenMinKlines[coin])
-
         hourIncrease = (currPrice - hourMinLow) / hourMinLow
-        tenMinIncrease = (currPrice - tenMinMinLow) / tenMinMinLow
 
+        # add to / edit bounce
+        if hourIncrease > 0.1 and (coin not in self.bounceQueue) and (coin not in self.bouncePlaying) and (
+                coin not in self.runners) \
+                and coin not in self.blacklist:
+            with lock:
+                self.logger.log("adding {0} to bounce list".format(coin))
+                self.bounceQueue[coin] = hourIncrease
 
-        if hourIncrease > 0.1 and (coin not in self.bouncePlays) and (coin not in self.bouncePlaying) and \
-                (coin not in self.runners) and (coin not in self.blacklist):
-            self.logger.log("adding {0} to bounce list".format(coin))
-            self.bouncePlays.add(coin)
+        if coin in self.bounceQueue and self.bounceQueue[coin] < hourIncrease:
+            self.bounceQueue[coin] = hourIncrease
 
         # check runners to see if you can bounce play them again
         if coin in self.runners:
@@ -125,21 +111,27 @@ class ChadAlert:
                 self.runners.pop(coin, 0)
 
             elif price > self.runners[coin]["high"]:
-                self.logger.log("Adding runner back into bouncePlay list")
-                self.bouncePlays.add(coin)
+                self.logger.log("Adding runner back into bounceQueue list")
+                self.bounceQueue[coin] = hourIncrease
                 self.runners.pop(coin, 0)
 
-        canPlay = False
+        if coin in self.bounceQueue and (coin not in self.bouncePlaying):
+            sorted_plays = sorted(self.bouncePlaying.items(), key=operator.itemgetter(0))
+            if self.bouncePlayCount < 5:
+                self.addBouncePlay(coin)
 
-        if coin in self.bouncePlays and (coin not in self.bouncePlaying) and self.bouncePlayCount < 5:
-            self.bouncePlayCount += 1
-            self.bouncePlays.remove(coin)
-            self.bouncePlaying.add(coin)
-            self.logger.log("Playing bounce-play from list: {0}".format(coin))
-            bouncePlay = BouncePlay(coin, self)
-
-        if tenMinIncrease > 0.07 and (coin not in self.tenMinChad):
-            self.tenMinChad.add(coin)
+            # add weak coin to bounce queue again
+            else:
+                for pair in sorted_plays:
+                    currCoin = pair[0]
+                    value = pair[1]
+                    if self.bounceQueue[coin] > value and self.bouncePlayObjs[currCoin].stage < 3:
+                        with lock:
+                            self.bounceQueue[currCoin] = self.bouncePlaying[currCoin]
+                            self.removeBouncePlay(currCoin)
+                            self.addBouncePlay(coin)
+                            self.logger.log("REPLACED {0} for {1} in bounce plays".format(currCoin, coin))
+                        break
 
     def getMinLow(self, klines):
         minLow = 100000000.0
@@ -148,6 +140,20 @@ class ChadAlert:
             if minLow > currLow:
                 minLow = currLow
         return minLow
+
+    def addBouncePlay(self, coin):
+        self.bouncePlaying[coin] = self.bounceQueue[coin]
+        self.bounceQueue.pop(coin, 0)
+        self.logger.log("Playing bounce-play from list: {0}".format(coin))
+        bouncePlay = BouncePlay(coin, self)
+        self.bouncePlayObjs[coin] = bouncePlay
+        self.bouncePlayCount += 1
+
+    def removeBouncePlay(self, coin):
+        self.bouncePlaying.pop(coin, 0)
+        self.bouncePlayObjs.pop(coin, 0)
+        self.logger.log("Deleting current bounce play: {0}".format(coin))
+        self.bouncePlayCount -= 1
 
     def addToRunners(self, info):
         # info in the form of {coin, low, high}
