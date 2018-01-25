@@ -137,7 +137,8 @@ class ChadAlert:
 
                             self.removeBouncePlay(currCoin)
                             self.addBouncePlay(coin, value)
-                            self.logger.log("REPLACED {0} for {1} in bounce plays".format(currCoin, coin))
+                            self.logger.log("REPLACED {0} for {1} in bounce plays ({2} vs {3})"
+                                            .format(currCoin, coin, currValue, value))
                             break
 
         # TODO: STOP RERUNNING
