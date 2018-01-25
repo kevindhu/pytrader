@@ -80,7 +80,7 @@ class ChadAlert:
                 # self.logger.log("2 HR CALLING " + coin)
                 newHourKlines = self.client.get_historical_klines(coin,
                                                                   Client.KLINE_INTERVAL_15MINUTE,
-                                                                  "10 hours ago PT")
+                                                                  "30 hours ago PT")
                 with lock:
                     self.hourKlines[coin] = newHourKlines
 
@@ -106,12 +106,13 @@ class ChadAlert:
         if coin in self.runners:
             price = self.prices[coin]
 
-            if self.serverTime - self.runners[coin]["time"] > 150000000:
+            if self.serverTime - self.runners[coin]["time"] > 400000000:
                 self.logger.log("Too long, taking {0} out of runners".format(coin))
                 self.runners.pop(coin, 0)
 
             elif price > self.runners[coin]["high"]:
-                self.logger.log("Adding runner back into bounce queue")
+                self.logger.log("Price for {0} has gone higher than high at {1}: Adding runner back into bounce queue"
+                                .format(coin, self.runners[coin]["high"]))
                 self.bounceQueue[coin] = hourIncrease
                 self.runners.pop(coin, 0)
 

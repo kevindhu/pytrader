@@ -161,7 +161,7 @@ class BouncePlay:
                     self.stage = 6
                     return
 
-                if price - lowestDip > (highestPrice - lowestPrice) * 0.3:
+                if price - lowestDip > (highestPrice - lowestPrice) * 0.25:
                     self.logger.log("bounce just happened, putting {0} back on the runner list".format(self.coin))
                     self.stage = 6
 
