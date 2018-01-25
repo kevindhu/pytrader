@@ -9,6 +9,7 @@ NUM_THREADS = 100
 
 flag = False
 
+
 class BouncePlay:
     def __init__(self, coin, chadAlert):
         self.logger = Logger("", coin)
@@ -18,6 +19,7 @@ class BouncePlay:
         self.chadAlert = chadAlert
         self.stage = 0
         self.startTime = 0
+        self.started = False
         self.firstBuyDone = False
         self.secondBuyDone = False
         self.thirdBuyDone = False
@@ -27,15 +29,21 @@ class BouncePlay:
         self.firstDeduction = False
         self.secondDeduction = False
 
-        self.lastKlines = self.client.get_historical_klines(self.coin,
-                                                            Client.KLINE_INTERVAL_15MINUTE,
-                                                            "24 hours ago PT")
-
-        self.run()
+        try:
+            self.lastKlines = self.client.get_historical_klines(self.coin,
+                                                                Client.KLINE_INTERVAL_15MINUTE,
+                                                                "24 hours ago PT")
+        except Exception as e:
+            self.logger.log("weird error initializing lastKlines for {0}, retrying".format(self.coin))
+            time.sleep(5)
+            self.lastKlines = self.client.get_historical_klines(self.coin,
+                                                                Client.KLINE_INTERVAL_15MINUTE,
+                                                                "24 hours ago PT")
 
     def run(self):
+        self.started = True
+        self.logger.log("RUNNING {0}".format(self.coin))
         loops = 0
-        self.logger.log("-------------------------------------------------------")
         # firstKline = first candlestick that is green and larger volume
         firstKline = False
         minVolume = 0.0
@@ -81,7 +89,7 @@ class BouncePlay:
         lowestDip = lowestHistDip
 
         self.logger.log(
-            "{3}: high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
+            "commencing stage 0 for {3}: high, low, lowestDip: {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
         if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
             self.logger.log("dip already happened, putting {0} back on the runner list".format(self.coin))
             self.stage = 6
@@ -93,7 +101,6 @@ class BouncePlay:
             if self.coin not in self.chadAlert.bouncePlaying:
                 self.logger.log("CHAD ALERT STOPPED US BECAUSE A BETTER COIN WAS PLAYABLE!")
                 return
-
 
             loops += 1
             price = self.chadAlert.getPrice(self.coin)
@@ -126,13 +133,13 @@ class BouncePlay:
                         "{3}% dip from the top at {1} and bottom at {2}-----------"
                             .format(price, highestPrice, lowestPrice, percentage, self.coin))
 
-                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.7)
-                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.6)
-                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.5)
+                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.52)
+                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.45)
+                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.3)
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.2)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.28)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.35)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.3)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.35)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.4)
 
                     self.mainBuyOrder = firstBuyPrice
 
@@ -157,7 +164,6 @@ class BouncePlay:
                 if price - lowestDip > (highestPrice - lowestDip) * 0.35:
                     self.logger.log("bounce just happened, putting {0} back on the runner list".format(self.coin))
                     self.stage = 6
-
 
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
@@ -220,6 +226,6 @@ class BouncePlay:
             elif self.stage == 6:
                 self.chadAlert.addToRunners(
                     {'coin': self.coin, 'low': lowestPrice, 'high': highestPrice, 'time': firstKline[0]})
-                self.chadAlert.bouncePlayCount -= 1
+                self.chadAlert.removeBouncePlay(self.coin)
                 return
             time.sleep(1)

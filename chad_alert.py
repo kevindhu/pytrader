@@ -80,7 +80,7 @@ class ChadAlert:
                 # self.logger.log("2 HR CALLING " + coin)
                 newHourKlines = self.client.get_historical_klines(coin,
                                                                   Client.KLINE_INTERVAL_15MINUTE,
-                                                                  "5 hours ago PT")
+                                                                  "10 hours ago PT")
                 with lock:
                     self.hourKlines[coin] = newHourKlines
 
@@ -89,14 +89,14 @@ class ChadAlert:
             return
 
         hourMinLow = self.getMinLow(self.hourKlines[coin])
-        hourIncrease = (currPrice - hourMinLow) / hourMinLow
+        hourMaxHigh = self.getMaxHigh(self.hourKlines[coin])
+        hourIncrease = (hourMaxHigh - hourMinLow) / hourMinLow
 
         # add to / edit bounce
-        if hourIncrease > 0.1 and (coin not in self.bounceQueue) and (coin not in self.bouncePlaying) and (
-                coin not in self.runners) \
-                and coin not in self.blacklist:
-            with lock:
-                self.logger.log("adding {0} to bounce list".format(coin))
+        with lock:
+            if hourIncrease > 0.1 and (coin not in self.bounceQueue) and (coin not in self.bouncePlaying) \
+                    and (coin not in self.runners) and coin not in self.blacklist:
+                self.logger.log("adding {0} to bounce queue".format(coin))
                 self.bounceQueue[coin] = hourIncrease
 
         if coin in self.bounceQueue and self.bounceQueue[coin] < hourIncrease:
@@ -111,27 +111,38 @@ class ChadAlert:
                 self.runners.pop(coin, 0)
 
             elif price > self.runners[coin]["high"]:
-                self.logger.log("Adding runner back into bounceQueue list")
+                self.logger.log("Adding runner back into bounce queue")
                 self.bounceQueue[coin] = hourIncrease
                 self.runners.pop(coin, 0)
 
-        if coin in self.bounceQueue and (coin not in self.bouncePlaying):
-            sorted_plays = sorted(self.bouncePlaying.items(), key=operator.itemgetter(0))
-            if self.bouncePlayCount < 5:
-                self.addBouncePlay(coin)
+        with lock:
+            if coin in self.bounceQueue:
+                value = self.bounceQueue[coin]
+                if self.bouncePlayCount < 5:
+                    self.bounceQueue.pop(coin, 0)
+                    self.addBouncePlay(coin, value)
+                else:
+                    sorted_plays = sorted(self.bouncePlaying.items(), key=operator.itemgetter(0))
+                    for pair in sorted_plays:
+                        currCoin = pair[0]
+                        currValue = pair[1]
+                        if currCoin not in self.bouncePlayObjs:
+                            self.logger.log("Weird Error: bounce play object not found for {0}".format(currCoin))
+                            continue
 
-            # add weak coin to bounce queue again
-            else:
-                for pair in sorted_plays:
-                    currCoin = pair[0]
-                    value = pair[1]
-                    if self.bounceQueue[coin] > value and self.bouncePlayObjs[currCoin].stage < 3:
-                        with lock:
-                            self.bounceQueue[currCoin] = self.bouncePlaying[currCoin]
+                        stage = self.bouncePlayObjs[currCoin].stage
+                        if value > currValue and 0 < stage < 3:
+                            self.bounceQueue[currCoin] = currValue
+                            self.bounceQueue.pop(coin, 0)
+
                             self.removeBouncePlay(currCoin)
-                            self.addBouncePlay(coin)
+                            self.addBouncePlay(coin, value)
                             self.logger.log("REPLACED {0} for {1} in bounce plays".format(currCoin, coin))
-                        break
+                            break
+
+        # TODO: STOP RERUNNING
+        if coin in self.bouncePlayObjs and not self.bouncePlayObjs[coin].started:
+            self.startBouncePlay(coin)
 
     def getMinLow(self, klines):
         minLow = 100000000.0
@@ -141,19 +152,31 @@ class ChadAlert:
                 minLow = currLow
         return minLow
 
-    def addBouncePlay(self, coin):
-        self.bouncePlaying[coin] = self.bounceQueue[coin]
-        self.bounceQueue.pop(coin, 0)
+    def getMaxHigh(self, klines):
+        maxHigh = 0
+        for index in range(0, len(klines) - 1):
+            currHigh = float(klines[index][2])
+            if maxHigh < currHigh:
+                maxHigh = currHigh
+        return maxHigh
+
+    def addBouncePlay(self, coin, value):
         self.logger.log("Playing bounce-play from list: {0}".format(coin))
-        bouncePlay = BouncePlay(coin, self)
-        self.bouncePlayObjs[coin] = bouncePlay
-        self.bouncePlayCount += 1
+        self.logger.log("BOUNCE PLAY COUNT IS NOW {0}".format(self.bouncePlayCount))
+        self.bouncePlayObjs[coin] = BouncePlay(coin, self)
+        self.bouncePlaying[coin] = value
+        self.bounceQueue.pop(coin, 0)
+        self.bouncePlayCount = len(self.bouncePlaying)
 
     def removeBouncePlay(self, coin):
         self.bouncePlaying.pop(coin, 0)
         self.bouncePlayObjs.pop(coin, 0)
+        self.bouncePlayCount = len(self.bouncePlaying)
         self.logger.log("Deleting current bounce play: {0}".format(coin))
-        self.bouncePlayCount -= 1
+        self.logger.log("BOUNCE PLAY COUNT IS NOW {0}".format(self.bouncePlayCount))
+
+    def startBouncePlay(self, coin):
+        self.bouncePlayObjs[coin].run()
 
     def addToRunners(self, info):
         # info in the form of {coin, low, high}
