@@ -106,7 +106,7 @@ class ChadAlert:
         if coin in self.runners:
             price = self.prices[coin]
 
-            if self.serverTime - self.runners[coin]["time"] > 106400000:
+            if self.serverTime - self.runners[coin]["time"] > 150000000:
                 self.logger.log("Too long, taking {0} out of runners".format(coin))
                 self.runners.pop(coin, 0)
 
