@@ -94,13 +94,14 @@ class ChadAlert:
 
         # add to / edit bounce
         with lock:
-            if hourIncrease > 0.1 and (coin not in self.bounceQueue) and (coin not in self.bouncePlaying) \
+            if hourIncrease > 0.15 and (coin not in self.bouncePlaying) \
                     and (coin not in self.runners) and coin not in self.blacklist:
-                self.logger.log("adding {0} to bounce queue".format(coin))
-                self.bounceQueue[coin] = hourIncrease
-
-        if coin in self.bounceQueue and self.bounceQueue[coin] < hourIncrease:
-            self.bounceQueue[coin] = hourIncrease
+                if coin not in self.bounceQueue:
+                    self.logger.log("adding {0} to bounce queue with {1}% increase".format(coin, hourIncrease * 100))
+                    self.bounceQueue[coin] = hourIncrease
+                elif self.bounceQueue[coin] < hourIncrease:
+                    self.logger.log("editing {0} in bounce queue for {1}% increase".format(coin, hourIncrease * 100))
+                    self.bounceQueue[coin] = hourIncrease
 
         # check runners to see if you can bounce play them again
         if coin in self.runners:
@@ -133,13 +134,13 @@ class ChadAlert:
 
                         stage = self.bouncePlayObjs[currCoin].stage
                         if value > currValue and 0 < stage < 3:
+                            self.logger.log("Replacing {0} for {1} in bounce plays ({2} vs {3})"
+                                            .format(currCoin, coin, currValue, value))
                             self.bounceQueue[currCoin] = currValue
                             self.bounceQueue.pop(coin, 0)
 
                             self.removeBouncePlay(currCoin)
                             self.addBouncePlay(coin, value)
-                            self.logger.log("REPLACED {0} for {1} in bounce plays ({2} vs {3})"
-                                            .format(currCoin, coin, currValue, value))
                             break
 
         # TODO: STOP RERUNNING

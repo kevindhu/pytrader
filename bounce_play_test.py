@@ -99,7 +99,7 @@ class BouncePlay:
 
         while True:
             if self.coin not in self.chadAlert.bouncePlaying:
-                self.logger.log("CHAD ALERT STOPPED US BECAUSE A BETTER COIN WAS PLAYABLE!")
+                self.logger.log("CHAD ALERT FOR {0} STOPPED US BECAUSE A BETTER COIN WAS PLAYABLE!".format(self.coin))
                 return
 
             loops += 1
