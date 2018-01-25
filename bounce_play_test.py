@@ -32,13 +32,13 @@ class BouncePlay:
         try:
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "24 hours ago PT")
+                                                                "48 hours ago PT")
         except Exception as e:
             self.logger.log("weird error initializing lastKlines for {0}, retrying".format(self.coin))
             time.sleep(5)
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "24 hours ago PT")
+                                                                "48 hours ago PT")
 
     def run(self):
         self.started = True
@@ -161,7 +161,7 @@ class BouncePlay:
                     self.stage = 6
                     return
 
-                if price - lowestDip > (highestPrice - lowestDip) * 0.35:
+                if price - lowestDip > (highestPrice - lowestPrice) * 0.3:
                     self.logger.log("bounce just happened, putting {0} back on the runner list".format(self.coin))
                     self.stage = 6
 
