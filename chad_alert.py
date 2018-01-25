@@ -18,7 +18,7 @@ class ChadAlert:
         self.logger = Logger("ChadAlert", "")
         self.workers = []
         self.queue = Queue()
-        self.hourKlines = {}
+        self.klines = {}
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.blacklist = set()
         self.runners = {}
@@ -42,10 +42,7 @@ class ChadAlert:
 
         global lock
         lock = threading.Lock()
-
-        allPrices = self.client.get_all_tickers()
-        self.logger.log("STARTED CHAD ALERT ----------------------------"
-                        "------------------------------------------------")
+        self.logger.log("---STARTING CHAD ALERT---")
 
         while True:
             self.loops += 1
@@ -57,7 +54,7 @@ class ChadAlert:
                     self.queue.put(ticker)
 
             if self.loops % 4000 == 0:
-                self.logger.log("resetting blacklist")
+                self.logger.log("Resetting blacklist")
 
     def process_queue(self, worker_id):
         while True:
@@ -76,45 +73,40 @@ class ChadAlert:
 
         try:
             # updates every 60 minutes
-            if coin not in self.hourKlines:
-                # self.logger.log("2 HR CALLING " + coin)
-                newHourKlines = self.client.get_historical_klines(coin,
-                                                                  Client.KLINE_INTERVAL_15MINUTE,
-                                                                  "30 hours ago PT")
+            if coin not in self.klines:
+                klines = self.client.get_historical_klines(coin,
+                                                           Client.KLINE_INTERVAL_15MINUTE,
+                                                           "30 hours ago PT")
                 with lock:
-                    self.hourKlines[coin] = newHourKlines
+                    self.klines[coin] = klines
 
         except TypeError:
             # self.logger.log("TYPEERROR SHIT FOR " + coin + " in " + TIME_SCALE)
             return
 
-        hourMinLow = self.getMinLow(self.hourKlines[coin])
-        hourMaxHigh = self.getMaxHigh(self.hourKlines[coin])
-        hourIncrease = (hourMaxHigh - hourMinLow) / hourMinLow
+        minLow = self.getMinLow(self.klines[coin])
+        currPrice = self.getPrice(coin)
+        increase = (currPrice - minLow) / minLow
 
         # add to / edit bounce
         with lock:
-            if hourIncrease > 0.15 and (coin not in self.bouncePlaying) \
+            if increase > 0.15 and (coin not in self.bouncePlaying) \
                     and (coin not in self.runners) and coin not in self.blacklist:
                 if coin not in self.bounceQueue:
-                    self.logger.log("adding {0} to bounce queue with {1}% increase".format(coin, hourIncrease * 100))
-                    self.bounceQueue[coin] = hourIncrease
-                elif self.bounceQueue[coin] < hourIncrease:
-                    self.logger.log("editing {0} in bounce queue for {1}% increase".format(coin, hourIncrease * 100))
-                    self.bounceQueue[coin] = hourIncrease
+                    self.bounceQueue[coin] = increase
+                elif self.bounceQueue[coin] < increase:
+                    self.bounceQueue[coin] = increase
 
         # check runners to see if you can bounce play them again
         if coin in self.runners:
-            price = self.prices[coin]
-
             if self.serverTime - self.runners[coin]["time"] > 400000000:
-                self.logger.log("Too long, taking {0} out of runners".format(coin))
+                self.logger.log("Taking {0} out of runners, time since start has exceeded 400000000".format(coin))
                 self.runners.pop(coin, 0)
 
-            elif price > self.runners[coin]["high"]:
+            elif currPrice > self.runners[coin]["high"]:
                 self.logger.log("Price for {0} has gone higher than high at {1}: Adding runner back into bounce queue"
                                 .format(coin, self.runners[coin]["high"]))
-                self.bounceQueue[coin] = hourIncrease
+                self.bounceQueue[coin] = increase
                 self.runners.pop(coin, 0)
 
         with lock:
@@ -165,7 +157,6 @@ class ChadAlert:
 
     def addBouncePlay(self, coin, value):
         self.logger.log("Playing bounce-play from list: {0}".format(coin))
-        self.logger.log("BOUNCE PLAY COUNT IS NOW {0}".format(self.bouncePlayCount))
         self.bouncePlayObjs[coin] = BouncePlay(coin, self)
         self.bouncePlaying[coin] = value
         self.bounceQueue.pop(coin, 0)
@@ -176,7 +167,6 @@ class ChadAlert:
         self.bouncePlayObjs.pop(coin, 0)
         self.bouncePlayCount = len(self.bouncePlaying)
         self.logger.log("Deleting current bounce play: {0}".format(coin))
-        self.logger.log("BOUNCE PLAY COUNT IS NOW {0}".format(self.bouncePlayCount))
 
     def startBouncePlay(self, coin):
         self.bouncePlayObjs[coin].run()
@@ -186,7 +176,7 @@ class ChadAlert:
         with lock:
             if info["coin"] not in self.runners:
                 self.runners[info["coin"]] = info
-                self.logger.log("adding {0} to the runner list".format(info["coin"]))
+                self.logger.log("Adding {0} to the runner list".format(info["coin"]))
 
 
 ChadAlert().run()
