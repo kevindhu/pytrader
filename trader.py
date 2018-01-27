@@ -1,10 +1,6 @@
 from __future__ import division
 from binance.client import Client
 from binance.enums import *
-import threading
-from threading import Thread
-from queue import Queue
-import time
 
 API_KEY = "i1s87G06vlhZTdKy7z3V0IRRKujhvps4umFTELYqre3awoeD4ZKpzWsCm8O3HklK"
 API_SECRET = "mpZGQfH0SraheOvbJZMANJCWapD5xDo0HfbapGGmjm3YCXxsvrFj4a5zVxNOqdoP"
@@ -69,10 +65,10 @@ class Trader:
 
         return order
 
-    def cancelOrder(self, coin, id):
+    def cancelOrder(self, coin, orderId):
         self.client.cancel_order(
             symbol=coin,
-            orderId=id)
+            orderId=orderId)
 
     def startTrade(self, coin):
         if self.trading == "":

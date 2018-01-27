@@ -25,8 +25,8 @@ class BouncePlay:
         self.secondBuyDone = False
         self.thirdBuyDone = False
 
-        self.mainBuyOrder = False
-        self.mainSellOrder = False
+        self.mainBuyOrder = None
+        self.mainSellOrder = None
 
         self.mainBought = False
         self.mainBuyPrice = False
@@ -170,8 +170,6 @@ class BouncePlay:
                     self.mainBuyPrice = firstBuyPrice
                     self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.33)
 
-
-
                     self.startTime = self.chadAlert.serverTime
                     self.stage = 2
 
@@ -191,7 +189,7 @@ class BouncePlay:
                     self.stage = 3
                     self.logger.log(
                         "{2} STAGE 3: IN AT {0}, ATTEMPTED SELL AT {1}".format(firstBuyPrice, firstSellPrice,
-                                                                               self.coin))e
+                                                                               self.coin))
                     self.logreceipt.log("BOUGHT AT {0}".format(firstBuyPrice, self.coin))
                     self.mainBought = self.mainBuyPrice
                     self.mainBuyPrice = secondBuyPrice
@@ -199,10 +197,8 @@ class BouncePlay:
                     self.mainSellPrice = firstSellPrice
                     self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
 
-
             elif self.stage == 3:
                 if price < secondBuyPrice:
-                    # TODO: cancel previous order sell
                     self.logger.log(
                         "{2} STAGE 4: IN AT {0}, ATTEMPTED SELL AT {1}".format(secondBuyPrice, secondSellPrice,
                                                                                self.coin))
@@ -230,7 +226,7 @@ class BouncePlay:
                     self.tryCancel(self.coin, self.mainSellOrder["orderId"])
 
                     self.mainBuyPrice = False
-                    self.mainBuyOrder = False
+                    self.mainBuyOrder = None
                     self.mainSellPrice = thirdSellPrice
                     self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
                     self.stage = 5
