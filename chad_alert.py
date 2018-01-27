@@ -5,6 +5,7 @@ from threading import Thread
 from queue import Queue
 import time
 from bounce_play_test import BouncePlay
+from trader import Trader
 from logger import Logger
 import operator
 
@@ -15,7 +16,7 @@ NUM_THREADS = 100
 
 class ChadAlert:
     def __init__(self):
-        self.logger = Logger("ChadAlert", "")
+        self.logger = Logger("")
         self.workers = []
         self.queue = Queue()
         self.klines = {}
@@ -30,6 +31,8 @@ class ChadAlert:
         self.bounceQueue = {}
         self.bouncePlaying = {}
         self.bouncePlayObjs = {}
+
+        self.trader = Trader(self)
 
     def run(self):
         for worker_id in range(NUM_THREADS):
@@ -103,16 +106,16 @@ class ChadAlert:
                 self.logger.log("Taking {0} out of runners, time since start has exceeded 400000000".format(coin))
                 self.runners.pop(coin, 0)
 
-            elif currPrice > self.runners[coin]["high"]:
-                self.logger.log("Price for {0} has gone higher than high at {1}: Adding runner back into bounce queue"
-                                .format(coin, self.runners[coin]["high"]))
+            elif currPrice > self.runners[coin]["high"] * 1.1:
+                self.logger.log("Price for {0} has gone 10% higher than high at {1}: Adding runner "
+                                "back into bounce queue".format(coin, self.runners[coin]["high"]))
                 self.bounceQueue[coin] = increase
                 self.runners.pop(coin, 0)
 
         with lock:
             if coin in self.bounceQueue:
                 value = self.bounceQueue[coin]
-                if self.bouncePlayCount < 5:
+                if self.bouncePlayCount < 10:
                     self.bounceQueue.pop(coin, 0)
                     self.addBouncePlay(coin, value)
                 else:
@@ -157,7 +160,7 @@ class ChadAlert:
 
     def addBouncePlay(self, coin, value):
         self.logger.log("Playing bounce-play from list: {0}".format(coin))
-        self.bouncePlayObjs[coin] = BouncePlay(coin, self)
+        self.bouncePlayObjs[coin] = BouncePlay(coin, self, self.trader)
         self.bouncePlaying[coin] = value
         self.bounceQueue.pop(coin, 0)
         self.bouncePlayCount = len(self.bouncePlaying)

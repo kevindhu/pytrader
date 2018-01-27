@@ -3,19 +3,18 @@ import os
 
 
 class Logger:
-    def __init__(self, name, coin):
+    def __init__(self, name):
         self.name = name
-        self.coin = coin
 
     def log(self, text):
         print(text)
         date = datetime.datetime.now()
-        if self.coin != "":
-            if self.coin.endswith("receipt"):
-                dir = "logs/{0}-{1}/receipts/{2}.txt".format(str(date.month), str(date.day), self.coin)
+        if self.name != "":
+            if self.name.endswith("receipt"):
+                dir = "logs/{0}-{1}/receipts/{2}.txt".format(str(date.month), str(date.day), self.name)
                 file = "logs/{0}-{1}/receipts/".format(str(date.month), str(date.day))
             else:
-                dir = "logs/{0}-{1}/{2}.txt".format(str(date.month), str(date.day), self.coin)
+                dir = "logs/{0}-{1}/{2}.txt".format(str(date.month), str(date.day), self.name)
                 file = "logs/{0}-{1}/".format(str(date.month), str(date.day))
             if not os.path.exists(file):
                 os.makedirs(file)
