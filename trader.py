@@ -15,7 +15,7 @@ class Trader:
 
         # the ticker traded
         self.trading = ""
-        self.USDT = self.client.get_asset_balance(asset='USDT')
+        self.USDT = 0.0
 
     def getCurrentUSDT(self):
         self.USDT = self.client.get_asset_balance(asset='USDT')
@@ -26,13 +26,18 @@ class Trader:
             print("not trading this coin, cannot buy!")
             return
 
-        price = float(self.truncate(price, 8))
+        price = float("%.4g" % price)
         self.getCurrentUSDT()
-        USDTquantity = float(self.USDT["free"]) * percentage
+        totalUSDTquantity = float(self.USDT["free"])
         self.logger.log("WE HAVE {0} AMOUNT OF USDT"
+                        .format(totalUSDTquantity))
+        USDTquantity = totalUSDTquantity * percentage
+        self.logger.log("WE WILL USE {0} AMOUNT OF USDT"
                         .format(USDTquantity))
+
+
         secondCoinQuantity = float(self.truncate(USDTquantity /
-                                                 self.chadAlert.USDTprices[secondCoin + "USDT"], 6))
+                                                 self.chadAlert.USDTprices[secondCoin + "USDT"], 5))
         self.logger.log("BUYING {0} AMOUNT OF {1} FOR TRANSFERRING"
                         .format(secondCoinQuantity, secondCoin))
 
@@ -54,30 +59,30 @@ class Trader:
             price=str(price))
         return secondOrder
 
-    def sellCoin(self, coin, secondCoin, price):
-        coinAlone = coin.replace(secondCoin, '')
-        price = float(self.truncate(price, 8))
-
+    def sellCoin(self, coin, secondCoin, price, length):
         if self.trading != coin:
             print("not trading this coin, cannot sell!")
             return
+
+        coinAlone = coin.replace(secondCoin, '')
         coinInfo = self.client.get_asset_balance(asset=coinAlone)
-        quantity = coinInfo["free"]
+        quantity = float(self.truncate(coinInfo["free"], length))
 
         self.logger.log("SELLING {0} AMOUNT OF {1}"
                         .format(quantity, coin))
 
-        if not price:
-            order = self.client.order_market_sell(
-                symbol=coin,
-                quantity=quantity)
-        else:
+        if price:
+            price = float("%.4g" % price)
             order = self.client.order_limit_sell(
                 symbol=coin,
                 type=ORDER_TYPE_LIMIT,
                 timeInForce=TIME_IN_FORCE_GTC,
                 quantity=quantity,
                 price=str(price))
+        else:
+            order = self.client.order_market_sell(
+                symbol=coin,
+                quantity=quantity)
 
         return order
 

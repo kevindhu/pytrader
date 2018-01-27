@@ -7,23 +7,25 @@ class Logger:
         self.name = name
 
     def log(self, text):
+        # only for the console
         print(text)
+        timestamp = datetime.datetime.now()
         date = datetime.datetime.now()
-        directory = "logs/{0}-{1}-{2}.txt".format(str(date.month), str(date.day), str(date.hour))
+        month = str(date.month)
+        day = str(date.day)
+        hour = str(date.hour)
+        directory = "logs/{0}-{1}-{2}.txt".format(month, day, hour)
         directory2 = None
-
 
         if self.name != "":
             if self.name.endswith("receipt"):
-                directory2 = "logs/{0}-{1}/receipts/{2}.txt".format(str(date.month), str(date.day), self.name)
-                file = "logs/{0}-{1}/receipts/".format(str(date.month), str(date.day))
+                directory2 = "logs/{0}-{1}/receipts/{2}.txt".format(month, day, self.name)
+                file = "logs/{0}-{1}/receipts/".format(month, day)
             else:
-                directory2 = "logs/{0}-{1}/{2}.txt".format(str(date.month), str(date.day), self.name)
-                file = "logs/{0}-{1}/".format(str(date.month), str(date.day))
+                directory2 = "logs/{0}-{1}/{2}.txt".format(month, day, self.name)
+                file = "logs/{0}-{1}/".format(month, day)
             if not os.path.exists(file):
                 os.makedirs(file)
-
-        timestamp = datetime.datetime.now()
 
         with open(directory, 'a') as f:
             f.write("{0}: {1}\n".format(timestamp, text))

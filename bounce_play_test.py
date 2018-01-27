@@ -49,11 +49,20 @@ class BouncePlay:
     def run(self):
         self.started = True
         loops = 0
-        # firstKline = first candlestick that is green and larger volume
+        # get the first green candle with lowest price and large enough volume
+
+        ticker = self.client.get_ticker(symbol=self.coin)
+        volume = float(ticker["volume"]) * float(ticker["lastPrice"])
+        if volume < 100:
+            self.logger.log("{1} STAGE 0: Volume ({0} BTC) did not match parameters: deleting from bounce list, "
+                            "adding to blacklist".format(volume, self.coin))
+            self.chadAlert.removeBouncePlay(self.coin)
+            self.chadAlert.blacklist.add(self.coin)
+            return
+
         firstKline = False
         minVolume = 0.0
         lowestPrice = 100000
-        # get the first green candle with lowest price and large enough volume
         for kline in self.lastKlines:
             volume = float(kline[5])
             if minVolume == 0 or minVolume > volume:
@@ -64,15 +73,6 @@ class BouncePlay:
                 lowestPrice = float(kline[3])
                 # self.logger.log("LOWEST PRICE: " + str(lowestPrice))
                 firstKline = kline
-
-        ticker = self.client.get_ticker(symbol=self.coin)
-        volume = float(ticker["volume"]) * float(ticker["lastPrice"])
-        if not firstKline or volume < 100:
-            self.logger.log("{1} STAGE 0: Volume ({0} BTC) did not match parameters: deleting from bounce list, "
-                            "adding to blacklist".format(volume, self.coin))
-            self.chadAlert.removeBouncePlay(self.coin)
-            self.chadAlert.blacklist.add(self.coin)
-            return
 
         highestPrice = float(firstKline[2])
         lowestHistDip = highestPrice
@@ -105,8 +105,9 @@ class BouncePlay:
 
         while True:
             if self.coin not in self.chadAlert.bouncePlaying:
-                self.logger.log("{0} STAGE {1}: CHAD ALERT FOR {0} STOPPED US BECAUSE "
-                                "A BETTER COIN WAS PLAYABLE!".format(self.coin, self.stage))
+                self.logger.log(
+                    "{0} STAGE {1}: CHAD ALERT NO LONGER HAS {0} IN BOUNCE PLAYS!".format(self.coin, self.stage))
+                self.revertBack()
                 return
 
             loops += 1
@@ -117,13 +118,17 @@ class BouncePlay:
 
             # if sell is satisfied
             if self.mainSellPrice and price > self.mainSellPrice:
+                if self.mainSellOrder:
+                    orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainSellOrder["orderId"])
+                    if orderStatus["origQty"] != orderStatus["executedQty"]:
+                        self.logger.log("{0} STAGE {1}: NOT DONE EXECUTING SELL, RETRYING"
+                                        .format(self.coin, self.stage))
+                        continue
                 self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids-------".format(
                     self.mainSellPrice, self.coin))
-
+                self.mainSellOrder = None
                 # sell to USDT
-                self.trySell("BTC", "USDT", None)
-                if self.mainBuyOrder:
-                    self.tryCancel(self.coin, self.mainBuyOrder["orderId"])
+                self.revertBack()
                 profit = 1000 * (self.mainSellPrice / self.mainBought - 1)
                 self.logreceipt.log("SOLD AT {0} for ${1} profit".format(self.mainSellPrice, profit))
 
@@ -160,9 +165,6 @@ class BouncePlay:
                     secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.35)
                     thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.4)
 
-                    # starting trade!
-                    self.tryStartTrade()
-
                     self.logger.log("{6} STAGE 2: WILL TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
                         secondBuyPrice,
@@ -171,17 +173,13 @@ class BouncePlay:
                         secondSellPrice,
                         thirdSellPrice, self.coin))
 
-                    if self.trader.trading == self.coin:
-                        self.logger.log("-------- NOW TRADING {0} WITH REAL MONEY --------".format(self.coin))
-
                     self.mainBuyPrice = firstBuyPrice
                     self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.33)
-
                     self.startTime = self.chadAlert.serverTime
                     self.stage = 2
 
             elif self.stage == 2:
-                if self.chadAlert.serverTime - firstKline[0] <= 600:
+                if self.chadAlert.serverTime - firstKline[0] <= 300000:
                     self.logger.log("{0} STAGE 2: BOUNCE HAPPENED TOO QUICKLY, STOPPING TRADE".format(self.coin))
                     # go to stage 6 - put it back on runner list
                     self.stage = 6
@@ -193,6 +191,12 @@ class BouncePlay:
 
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
+                    if self.mainBuyOrder:
+                        orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
+                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                            self.logger.log("{0} STAGE 2: NOT DONE EXECUTING BID FOR STAGE 2, RETRYING".format(self.coin))
+                            continue
+
                     self.stage = 3
                     self.logger.log(
                         "{2} STAGE 3: IN AT {0}, ATTEMPTED SELL AT {1}".format(firstBuyPrice, firstSellPrice,
@@ -202,27 +206,39 @@ class BouncePlay:
                     self.mainBuyPrice = secondBuyPrice
                     self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.5)
                     self.mainSellPrice = firstSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
 
             elif self.stage == 3:
                 if price < secondBuyPrice:
+                    if self.mainBuyOrder:
+                        orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
+                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                            self.logger.log(
+                                "{0} STAGE 3: NOT DONE EXECUTING BID FOR STAGE 3, RETRYING".format(self.coin))
+                            continue
                     self.logger.log(
-                        "{2} STAGE 4: IN AT {0}, ATTEMPTED SELL AT {1}".format(secondBuyPrice, secondSellPrice,
-                                                                               self.coin))
+                        "{2} STAGE 4: ALSO IN AT {0}, ATTEMPTED SELL AT {1}".format(secondBuyPrice, secondSellPrice,
+                                                                                    self.coin))
                     self.logreceipt.log("BOUGHT AT {0}".format(secondBuyPrice, self.coin))
                     self.mainBought = (self.mainBuyPrice + self.mainBought) / 2
 
                     # cancel previous sell
-                    self.tryCancel(self.coin, self.mainSellOrder["orderId"])
+                    self.tryCancel(self.coin, self.mainSellOrder)
 
                     self.mainBuyPrice = thirdBuyPrice
                     self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 1)
                     self.mainSellPrice = secondSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
                     self.stage = 4
 
             elif self.stage == 4:
                 if price < thirdBuyPrice:
+                    if self.mainBuyOrder:
+                        orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
+                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                            self.logger.log(
+                                "{0} STAGE 4: NOT DONE EXECUTING BID FOR STAGE 4, RETRYING".format(self.coin))
+                            continue
                     self.logger.log(
                         "{2} STAGE 5: IN AT {0}, ATTEMPTED SELL AT {1}".format(thirdBuyPrice, thirdSellPrice,
                                                                                self.coin))
@@ -230,12 +246,12 @@ class BouncePlay:
                     self.mainBought = (self.mainBuyPrice + self.mainBought) / 2
 
                     # cancel previous sell
-                    self.tryCancel(self.coin, self.mainSellOrder["orderId"])
+                    self.tryCancel(self.coin, self.mainSellOrder)
 
                     self.mainBuyPrice = False
                     self.mainBuyOrder = None
                     self.mainSellPrice = thirdSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
                     self.stage = 5
 
             elif self.stage == 5:
@@ -245,23 +261,23 @@ class BouncePlay:
 
                 if uptrendTime < downTrendTime and not self.firstDeduction:
                     self.firstDeduction = True
-                    self.tryCancel(self.coin, self.mainSellOrder["orderId"])
-
-                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.3)
-                    self.logger.log("{3} STAGE 5: ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
-                        smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
-                    self.mainSellPrice = smallSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
-
-                if uptrendTime * 1.5 < downTrendTime and not self.secondDeduction:
-                    self.secondDeduction = True
-                    self.tryCancel(self.coin, self.mainSellOrder["orderId"])
+                    self.tryCancel(self.coin, self.mainSellOrder)
 
                     smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.25)
                     self.logger.log("{3} STAGE 5: ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
                         smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
                     self.mainSellPrice = smallSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+
+                if uptrendTime * 1.5 < downTrendTime and not self.secondDeduction:
+                    self.secondDeduction = True
+                    self.tryCancel(self.coin, self.mainSellOrder)
+
+                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.21)
+                    self.logger.log("{3} STAGE 5: ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
+                        smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
+                    self.mainSellPrice = smallSellPrice
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
 
             elif self.stage == 6:
                 self.logger.log("{0} STAGE 6: ADDING {0} TO RUNNER LIST".format(self.coin))
@@ -273,21 +289,24 @@ class BouncePlay:
 
     def tryBuy(self, secondCoin, price, percentage):
         order = None
+        if self.trader.trading == "":
+            self.tryStartTrade()
+            if self.trader.trading == self.coin:
+                self.logger.log("-------- NOW TRADING {0} WITH REAL MONEY --------".format(self.coin))
+
         if self.trader.trading == self.coin:
             order = self.trader.buyCoin(self.coin, secondCoin, price, percentage)
         return order
 
-    def trySell(self, coin, secondCoin, price):
+    def trySell(self, coin, secondCoin, price, length):
         order = None
         if self.trader.trading == self.coin:
-            order = self.trader.sellCoin(coin, secondCoin, price)
+            order = self.trader.sellCoin(coin, secondCoin, price, length)
         return order
 
-    def tryCancel(self, coin, id):
-        order = None
+    def tryCancel(self, coin, order):
         if self.trader.trading == self.coin:
-            order = self.trader.cancelOrder(coin, id)
-        return order
+            cancel = self.trader.cancelOrder(coin, order["orderId"])
 
     def tryStartTrade(self):
         if self.trader.trading == "":
@@ -296,3 +315,10 @@ class BouncePlay:
     def tryEndTrade(self):
         if self.trader.trading == self.coin:
             self.trader.endTrade()
+
+    def revertBack(self):
+        if self.mainBuyOrder:
+            self.tryCancel(self.coin, self.mainBuyOrder)
+        if self.mainSellOrder:
+            self.trySell(self.coin, "BTC", None, 0)
+        self.trySell("BTCUSDT", "USDT", None, 5)
