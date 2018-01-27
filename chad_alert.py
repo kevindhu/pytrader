@@ -24,7 +24,8 @@ class ChadAlert:
         self.blacklist = set()
         self.runners = {}
         self.serverTime = 0.0
-        self.prices = {}
+        self.BTCprices = {}  # BTCprices against BTC
+        self.USDTprices = {}
         self.loops = 0
         self.bouncePlayCount = 0
 
@@ -53,8 +54,11 @@ class ChadAlert:
             allPrices = self.client.get_all_tickers()
             for ticker in allPrices:
                 if ticker['symbol'].endswith("BTC"):
-                    self.prices[ticker['symbol']] = float(ticker['price'])
+                    self.BTCprices[ticker['symbol']] = float(ticker['price'])
                     self.queue.put(ticker)
+                if ticker['symbol'].endswith("USDT"):
+                    self.USDTprices[ticker['symbol']] = float(ticker['price'])
+
 
             if self.loops % 4000 == 0:
                 self.logger.log("Resetting blacklist")
@@ -69,7 +73,7 @@ class ChadAlert:
                 self.queue.task_done()
 
     def getPrice(self, coin):
-        return self.prices[coin]
+        return self.BTCprices[coin]
 
     def probe(self, coin, currPrice):
         TIME_SCALE = "2 hours ago"
@@ -88,7 +92,6 @@ class ChadAlert:
             return
 
         minLow = self.getMinLow(self.klines[coin])
-        currPrice = self.getPrice(coin)
         increase = (currPrice - minLow) / minLow
 
         # add to / edit bounce

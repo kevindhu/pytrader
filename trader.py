@@ -23,7 +23,7 @@ class Trader:
     def getCurrentUSDT(self):
         self.USDT = self.client.get_asset_balance(asset='USDT')
 
-    # secondCoin = something that can be traded for USDT
+    # secondCoin = only the coin
     def buyCoin(self, coin, secondCoin, price, percentage):
         if self.trading != coin:
             print("not trading this coin, cannot buy!")
@@ -31,16 +31,16 @@ class Trader:
 
         self.getCurrentUSDT()
         USDTquantity = float(self.USDT["free"]) * percentage
-        secondCoinQuantity = USDTquantity / self.chadAlert.prices[secondCoin]
+        secondCoinQuantity = USDTquantity / self.chadAlert.USDTprices[secondCoin + "USDT"]
 
         firstOrder = self.client.order_market_buy(
-            symbol=secondCoin,
+            symbol=secondCoin + "USDT",
             quantity=secondCoinQuantity)
 
         coinQuantity = secondCoinQuantity / price
         # limit buy the coin
         secondOrder = self.client.order_limit_buy(
-            symbol=coin + secondCoin,
+            symbol=coin,
             type=ORDER_TYPE_LIMIT,
             timeInForce=TIME_IN_FORCE_GTC,
             quantity=coinQuantity,
@@ -48,19 +48,20 @@ class Trader:
         return secondOrder
 
     def sellCoin(self, coin, secondCoin, price):
+        coinAlone = coin.replace(secondCoin, '')
         if self.trading != coin:
             print("not trading this coin, cannot sell!")
             return
-        coinInfo = self.client.get_asset_balance(asset=coin)
+        coinInfo = self.client.get_asset_balance(asset=coinAlone)
         quantity = coinInfo["free"]
 
         if not price:
             order = self.client.order_market_sell(
-                symbol=coin + secondCoin,
+                symbol=coin,
                 quantity=quantity)
         else:
             order = self.client.order_limit_sell(
-                symbol=coin + secondCoin,
+                symbol=coin,
                 type=ORDER_TYPE_LIMIT,
                 timeInForce=TIME_IN_FORCE_GTC,
                 quantity=quantity,

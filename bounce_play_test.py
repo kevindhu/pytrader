@@ -156,12 +156,6 @@ class BouncePlay:
                     # starting trade!
                     self.tryStartTrade()
 
-                    if self.trader.trading == self.coin:
-                        self.logger.log("-------- NOW TRADING {0} WITH REAL MONEY --------".format(self.coin))
-
-                    self.mainBuyPrice = firstBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.33)
-
                     self.logger.log("{6} STAGE 2: WILL TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
                         secondBuyPrice,
@@ -169,6 +163,14 @@ class BouncePlay:
                         firstSellPrice,
                         secondSellPrice,
                         thirdSellPrice, self.coin))
+
+                    if self.trader.trading == self.coin:
+                        self.logger.log("-------- NOW TRADING {0} WITH REAL MONEY --------".format(self.coin))
+
+                    self.mainBuyPrice = firstBuyPrice
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.33)
+
+
 
                     self.startTime = self.chadAlert.serverTime
                     self.stage = 2
@@ -189,7 +191,7 @@ class BouncePlay:
                     self.stage = 3
                     self.logger.log(
                         "{2} STAGE 3: IN AT {0}, ATTEMPTED SELL AT {1}".format(firstBuyPrice, firstSellPrice,
-                                                                               self.coin))
+                                                                               self.coin))e
                     self.logreceipt.log("BOUGHT AT {0}".format(firstBuyPrice, self.coin))
                     self.mainBought = self.mainBuyPrice
                     self.mainBuyPrice = secondBuyPrice
@@ -291,4 +293,3 @@ class BouncePlay:
     def tryEndTrade(self):
         if self.trader.trading == self.coin:
             self.trader.endTrade()
-
