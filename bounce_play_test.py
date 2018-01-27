@@ -20,6 +20,7 @@ class BouncePlay:
         self.trader = trader
         self.stage = 0
         self.startTime = 0
+        self.startWatchingTime = 0
         self.started = False
         self.firstBuyDone = False
         self.secondBuyDone = False
@@ -95,11 +96,12 @@ class BouncePlay:
         self.logger.log(
             "{3} STAGE 0: HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
         if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
-            self.logger.log("{0} STAGE 0: DIP OCCURED BEFORE".format(self.coin))
+            self.logger.log("{0} STAGE 0: DIP ALREADY OCCURED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
         else:
             self.logger.log("{0} STAGE 1: STARTING VALID TRADE".format(self.coin))
             self.stage = 1
+            self.startWatchingTime = self.chadAlert.serverTime
 
         while True:
             if self.coin not in self.chadAlert.bouncePlaying:
@@ -130,6 +132,11 @@ class BouncePlay:
                     self.logger.log("-------- STOPPING TRADE FOR {0} WITH REAL MONEY --------".format(self.coin))
                 self.tryEndTrade()
 
+                self.stage = 6
+
+            if self.chadAlert.serverTime - self.startWatchingTime > 100000000 and 1 < self.stage < 3:
+                self.logger.log("{0} STAGE {1}: ENDING BOUNCE PLAY, TAKEN MORE THAN 100000000 milliseconds"
+                                .format(self.coin, self.stage))
                 self.stage = 6
 
             if self.stage == 1:

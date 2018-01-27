@@ -17,6 +17,7 @@ NUM_THREADS = 100
 class ChadAlert:
     def __init__(self):
         self.logger = Logger("")
+        self.trader = Trader(self, self.logger)
         self.workers = []
         self.queue = Queue()
         self.klines = {}
@@ -33,7 +34,6 @@ class ChadAlert:
         self.bouncePlaying = {}
         self.bouncePlayObjs = {}
 
-        self.trader = Trader(self)
 
     def run(self):
         for worker_id in range(NUM_THREADS):

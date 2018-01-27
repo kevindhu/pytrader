@@ -8,9 +8,10 @@ NUM_THREADS = 100
 
 
 class Trader:
-    def __init__(self, chadAlert):
+    def __init__(self, chadAlert, logger):
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.chadAlert = chadAlert
+        self.logger = logger
 
         # the ticker traded
         self.trading = ""
@@ -25,15 +26,25 @@ class Trader:
             print("not trading this coin, cannot buy!")
             return
 
+        price = float(self.truncate(price, 8))
         self.getCurrentUSDT()
         USDTquantity = float(self.USDT["free"]) * percentage
-        secondCoinQuantity = USDTquantity / self.chadAlert.USDTprices[secondCoin + "USDT"]
+        self.logger.log("WE HAVE {0} AMOUNT OF USDT"
+                        .format(USDTquantity))
+        secondCoinQuantity = float(self.truncate(USDTquantity /
+                                                 self.chadAlert.USDTprices[secondCoin + "USDT"], 6))
+        self.logger.log("BUYING {0} AMOUNT OF {1} FOR TRANSFERRING"
+                        .format(secondCoinQuantity, secondCoin))
 
         firstOrder = self.client.order_market_buy(
             symbol=secondCoin + "USDT",
             quantity=secondCoinQuantity)
 
-        coinQuantity = secondCoinQuantity / price
+        coinQuantity = float(self.truncate((secondCoinQuantity / price) * 0.95, 0))
+
+        self.logger.log("LIMIT BUYING {0} OF {1} AT {2}"
+                        .format(coinQuantity, coin, str(price)))
+
         # limit buy the coin
         secondOrder = self.client.order_limit_buy(
             symbol=coin,
@@ -45,11 +56,16 @@ class Trader:
 
     def sellCoin(self, coin, secondCoin, price):
         coinAlone = coin.replace(secondCoin, '')
+        price = float(self.truncate(price, 8))
+
         if self.trading != coin:
             print("not trading this coin, cannot sell!")
             return
         coinInfo = self.client.get_asset_balance(asset=coinAlone)
         quantity = coinInfo["free"]
+
+        self.logger.log("SELLING {0} AMOUNT OF {1}"
+                        .format(quantity, coin))
 
         if not price:
             order = self.client.order_market_sell(
@@ -76,3 +92,11 @@ class Trader:
 
     def endTrade(self):
         self.trading = ""
+
+    def truncate(self, f, n):
+        # Truncates/pads a float f to n decimal places without rounding
+        s = '{}'.format(f)
+        if 'e' in s or 'E' in s:
+            return '{0:.{1}f}'.format(f, n)
+        i, p, d = s.partition('.')
+        return '.'.join([i, (d + '0' * n)[:n]])
