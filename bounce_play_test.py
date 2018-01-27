@@ -269,13 +269,13 @@ class BouncePlay:
     def tryBuy(self, secondCoin, price, percentage):
         order = None
         if self.trader.trading == self.coin:
-            order = self.trader.buyCoin(self, self.coin, secondCoin, price, percentage)
+            order = self.trader.buyCoin(self.coin, secondCoin, price, percentage)
         return order
 
     def trySell(self, coin, secondCoin, price):
         order = None
         if self.trader.trading == self.coin:
-            order = self.trader.sellCoin(self, coin, secondCoin, price)
+            order = self.trader.sellCoin(coin, secondCoin, price)
         return order
 
     def tryCancel(self, coin, id):
