@@ -96,7 +96,7 @@ class BouncePlay:
         self.logger.log(
             "{3} STAGE 0: HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
         if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
-            self.logger.log("{0} STAGE 0: DIP ALREADY OCCURED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
+            self.logger.log("{0} STAGE 0: DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
         else:
             self.logger.log("{0} STAGE 1: STARTING VALID TRADE".format(self.coin))
@@ -104,7 +104,7 @@ class BouncePlay:
             self.startWatchingTime = self.chadAlert.serverTime
 
         while True:
-            if self.coin not in self.chadAlert.bouncePlaying:
+            if self.coin not in self.chadAlert.bouncePlaying or self.stage == 7:
                 self.logger.log(
                     "{0} STAGE {1}: CHAD ALERT NO LONGER HAS {0} IN BOUNCE PLAYS!".format(self.coin, self.stage))
                 self.revertBack()
@@ -127,16 +127,13 @@ class BouncePlay:
                 self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids-------".format(
                     self.mainSellPrice, self.coin))
                 self.mainSellOrder = None
-                # sell to USDT
-                self.revertBack()
+
                 profit = 1000 * (self.mainSellPrice / self.mainBought - 1)
                 self.logreceipt.log("SOLD AT {0} for ${1} profit".format(self.mainSellPrice, profit))
 
                 # end the trade!
                 if self.trader.trading == self.coin:
                     self.logger.log("-------- STOPPING TRADE FOR {0} WITH REAL MONEY --------".format(self.coin))
-                self.tryEndTrade()
-
                 self.stage = 6
 
             if self.chadAlert.serverTime - self.startWatchingTime > 100000000 and 1 < self.stage < 3:
@@ -195,7 +192,8 @@ class BouncePlay:
                     if self.mainBuyOrder:
                         orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
                         if orderStatus["origQty"] != orderStatus["executedQty"]:
-                            self.logger.log("{0} STAGE 2: NOT DONE EXECUTING BID FOR STAGE 2, RETRYING".format(self.coin))
+                            self.logger.log(
+                                "{0} STAGE 2: NOT DONE EXECUTING BID FOR STAGE 2, RETRYING".format(self.coin))
                             continue
 
                     self.stage = 3
@@ -285,7 +283,7 @@ class BouncePlay:
                 self.chadAlert.addToRunners(
                     {'coin': self.coin, 'low': lowestPrice, 'high': highestPrice, 'time': firstKline[0]})
                 self.chadAlert.removeBouncePlay(self.coin)
-                return
+                self.stage = 7
             time.sleep(1)
 
     def tryBuy(self, secondCoin, price, percentage):
@@ -323,3 +321,4 @@ class BouncePlay:
         if self.mainSellOrder:
             self.trySell(self.coin, "BTC", None, 0)
         self.trySell("BTCUSDT", "USDT", None, 5)
+        self.tryEndTrade()
