@@ -149,11 +149,7 @@ class BouncePlay:
 
                 # if the price dips more than 40% of the move
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
-                if percentage > 47:
-                    self.logger.log(
-                        "{4} STAGE 2: PRICE AT {0}, {3}% DIP FROM TOP {1} AND BOTTOM {2}"
-                            .format(price, highestPrice, lowestPrice, percentage, self.coin))
-
+                if percentage > 30:
                     firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.52)
                     secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.4)
                     thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.3)
@@ -161,6 +157,21 @@ class BouncePlay:
                     firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.3)
                     secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.35)
                     thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.4)
+                    self.logger.log("{6} STAGE 1: LOOKING INTO TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
+                        firstBuyPrice,
+                        secondBuyPrice,
+                        thirdBuyPrice,
+                        firstSellPrice,
+                        secondSellPrice,
+                        thirdSellPrice, self.coin))
+                    self.stage = 1.5
+
+            elif self.stage == 1.5:
+                percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
+                if percentage > 47:
+                    self.logger.log(
+                        "{4} STAGE 2: PRICE AT {0}, {3}% DIP FROM TOP {1} AND BOTTOM {2}"
+                            .format(price, highestPrice, lowestPrice, percentage, self.coin))
 
                     self.logger.log("{6} STAGE 2: WILL TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
