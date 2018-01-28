@@ -155,8 +155,8 @@ class BouncePlay:
                     thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.3)
 
                     firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.3)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.35)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.4)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.3)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.3)
                     self.logger.log("LOOKING INTO TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
                         secondBuyPrice,

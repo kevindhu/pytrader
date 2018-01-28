@@ -26,7 +26,6 @@ class Trader:
             print("not trading this coin, cannot buy!")
             return
 
-        price = float("%.4g" % price)
         self.getCurrentUSDT()
         totalUSDTquantity = float(self.USDT["free"])
         self.logger.log("WE HAVE {0} AMOUNT OF USDT"
@@ -47,10 +46,13 @@ class Trader:
         except Exception as e:
             self.logger.log(str(e))
 
-        coinQuantity = float(self.truncate((secondCoinQuantity / price) * 0.95, 0))
+        price = "%.4g" % price
+        price = '{:.8f}'.format(float(price))
+
+        coinQuantity = float(self.truncate((secondCoinQuantity / float(price)) * 0.95, 0))
 
         self.logger.log("LIMIT BUYING {0} OF {1} AT {2}"
-                        .format(coinQuantity, coin, str(price)))
+                        .format(coinQuantity, coin, price))
 
         # limit buy the coin
         try:
@@ -59,7 +61,7 @@ class Trader:
                 type=ORDER_TYPE_LIMIT,
                 timeInForce=TIME_IN_FORCE_GTC,
                 quantity=coinQuantity,
-                price=str(price))
+                price=price)
         except Exception as e:
             self.logger.log(str(e))
             secondOrder = None
@@ -74,18 +76,23 @@ class Trader:
         coinInfo = self.client.get_asset_balance(asset=coinAlone)
         quantity = float(self.truncate(coinInfo["free"], length))
 
-        self.logger.log("SELLING {0} AMOUNT OF {1}"
-                        .format(quantity, coin))
         try:
             if price:
-                price = float("%.4g" % price)
+                price = "%.4g" % price
+                price = '{:.8f}'.format(float(price))
+                self.logger.log("SELLING {0} AMOUNT OF {1} AT {2}"
+                                .format(quantity, coin, price))
+
                 order = self.client.order_limit_sell(
                     symbol=coin,
                     type=ORDER_TYPE_LIMIT,
                     timeInForce=TIME_IN_FORCE_GTC,
                     quantity=quantity,
-                    price=str(price))
+                    price=price)
             else:
+                self.logger.log("SELLING {0} AMOUNT OF {1} FOR MARKET"
+                                .format(quantity, coin))
+
                 order = self.client.order_market_sell(
                     symbol=coin,
                     quantity=quantity)
