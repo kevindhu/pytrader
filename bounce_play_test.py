@@ -3,8 +3,8 @@ from binance.client import Client
 from logger import Logger
 import time
 
-API_KEY = ""
-API_SECRET = ""
+API_KEY = "i1s87G06vlhZTdKy7z3V0IRRKujhvps4umFTELYqre3awoeD4ZKpzWsCm8O3HklK"
+API_SECRET = "mpZGQfH0SraheOvbJZMANJCWapD5xDo0HfbapGGmjm3YCXxsvrFj4a5zVxNOqdoP"
 NUM_THREADS = 100
 
 flag = False
@@ -152,7 +152,7 @@ class BouncePlay:
 
                 # if the price dips more than 40% of the move
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
-                if percentage > 40:
+                if percentage > 47:
                     self.logger.log(
                         "{4} STAGE 2: PRICE AT {0}, {3}% DIP FROM TOP {1} AND BOTTOM {2}"
                             .format(price, highestPrice, lowestPrice, percentage, self.coin))
@@ -185,7 +185,8 @@ class BouncePlay:
                     self.stage = 6
                     return
 
-                if price - lowestDip > (highestPrice - lowestPrice) * 0.3:
+                if price - lowestDip > (highestPrice - lowestPrice) * 0.2 and \
+                        ((price - lowestDip) > (highestPrice - lowestDip) * 0.6):
                     self.logger.log("{0} STAGE 2: BOUNCE JUST HAPPENED, STOPPING TRADE".format(self.coin))
                     self.stage = 6
 
