@@ -23,7 +23,7 @@ class Trader:
     # secondCoin = only the coin
     def buyCoin(self, coin, secondCoin, price, percentage):
         if self.trading != coin:
-            print("not trading this coin, cannot buy!")
+            print("NOT TRADING {0}, CANNOT BUY!".format(coin))
             return
 
         self.getCurrentUSDT()
@@ -67,15 +67,15 @@ class Trader:
             secondOrder = None
         return secondOrder
 
-    def sellCoin(self, coin, secondCoin, price, length):
-        if self.trading != coin:
-            print("not trading this coin, cannot sell!")
+    # permission = extra permission for trading
+    def sellCoin(self, coin, secondCoin, price, length, permission):
+        if self.trading != coin and not permission:
+            print("NOT TRADING {0}, CANNOT SELL!".format(coin))
             return
 
         coinAlone = coin.replace(secondCoin, '')
         coinInfo = self.client.get_asset_balance(asset=coinAlone)
         quantity = float(self.truncate(coinInfo["free"], length))
-
         try:
             if price:
                 price = "%.4g" % price
@@ -115,9 +115,11 @@ class Trader:
     def startTrade(self, coin):
         if self.trading == "":
             self.trading = coin
+            self.logger("NOW TRADING {0} FOR REAL MONEY".format(coin))
 
     def endTrade(self):
         self.trading = ""
+        self.logger("STOPPED TRADE FOR REAL MONEY")
 
     def truncate(self, f, n):
         # Truncates/pads a float f to n decimal places without rounding

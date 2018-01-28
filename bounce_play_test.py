@@ -6,6 +6,17 @@ import time
 API_KEY = "i1s87G06vlhZTdKy7z3V0IRRKujhvps4umFTELYqre3awoeD4ZKpzWsCm8O3HklK"
 API_SECRET = "mpZGQfH0SraheOvbJZMANJCWapD5xDo0HfbapGGmjm3YCXxsvrFj4a5zVxNOqdoP"
 NUM_THREADS = 100
+FIRST_BUY_PERC = 0.33
+SECOND_BUY_PERC = 0.5
+THIRD_BUY_PERC = 0.95
+
+FIRST_BUY = 0.52
+SECOND_BUY = 0.4
+THIRD_BUY = 0.3
+
+FIRST_SELL = 0.3
+SECOND_SELL = 0.3
+THIRD_SELL = 0.3
 
 flag = False
 
@@ -150,13 +161,13 @@ class BouncePlay:
                 # if the price dips more than 40% of the move
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage > 30:
-                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.52)
-                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.4)
-                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * 0.3)
+                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * FIRST_BUY)
+                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * SECOND_BUY)
+                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * THIRD_BUY)
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * 0.3)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * 0.3)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.3)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * FIRST_SELL)
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * SECOND_SELL)
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * THIRD_SELL)
                     self.logger.log("LOOKING INTO TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
                         secondBuyPrice,
@@ -183,7 +194,7 @@ class BouncePlay:
                         thirdSellPrice, self.coin))
 
                     self.mainBuyPrice = firstBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.33)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, FIRST_BUY_PERC)
                     self.startTime = self.chadAlert.serverTime
 
             elif self.stage == 2:
@@ -214,9 +225,9 @@ class BouncePlay:
                     self.logreceipt.log("BOUGHT {1} AT {0}".format(firstBuyPrice, self.coin))
                     self.mainBought = self.mainBuyPrice
                     self.mainBuyPrice = secondBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.5)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, SECOND_BUY_PERC)
                     self.mainSellPrice = firstSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0, False)
 
             elif self.stage == 3:
                 if price < secondBuyPrice:
@@ -237,9 +248,9 @@ class BouncePlay:
                     self.tryCancel(self.coin, self.mainSellOrder)
 
                     self.mainBuyPrice = thirdBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.95)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, THIRD_BUY_PERC)
                     self.mainSellPrice = secondSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0, False)
 
             elif self.stage == 4:
                 if price < thirdBuyPrice:
@@ -262,7 +273,7 @@ class BouncePlay:
                     self.mainBuyPrice = False
                     self.mainBuyOrder = None
                     self.mainSellPrice = thirdSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0, False)
 
             elif self.stage == 5:
                 uptrendTime = self.startTime - firstKline[0]
@@ -272,21 +283,21 @@ class BouncePlay:
                     self.firstDeduction = True
                     self.tryCancel(self.coin, self.mainSellOrder)
 
-                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.25)
+                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * FIRST_SMALL_SELL)
                     self.logger.log("ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
                         smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
                     self.mainSellPrice = smallSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0, False)
 
                 if uptrendTime * 1.5 < downTrendTime and not self.secondDeduction:
                     self.secondDeduction = True
                     self.tryCancel(self.coin, self.mainSellOrder)
 
-                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * 0.21)
+                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * SECOND_SMALL_SELL)
                     self.logger.log("ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
                         smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
                     self.mainSellPrice = smallSellPrice
-                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
+                    self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0, False)
 
             elif self.stage == 6:
                 self.logger.log("ADDING {0} TO RUNNER LIST".format(self.coin))
@@ -300,8 +311,6 @@ class BouncePlay:
         order = None
         if self.trader.trading == "":
             self.tryStartTrade()
-            if self.trader.trading == self.coin:
-                self.logger.log("-------- NOW TRADING {0} WITH REAL MONEY --------".format(self.coin))
 
         if self.trader.trading == self.coin:
             order = self.trader.buyCoin(self.coin, secondCoin, price, percentage)
@@ -310,10 +319,10 @@ class BouncePlay:
                                                                                    self.trader.trading))
         return order
 
-    def trySell(self, coin, secondCoin, price, length):
+    def trySell(self, coin, secondCoin, price, length, permission):
         order = None
-        if self.trader.trading == self.coin:
-            order = self.trader.sellCoin(coin, secondCoin, price, length)
+        if self.trader.trading == self.coin or permission:
+            order = self.trader.sellCoin(coin, secondCoin, price, length, permission)
         return order
 
     def tryCancel(self, coin, order):
@@ -323,15 +332,21 @@ class BouncePlay:
     def tryStartTrade(self):
         if self.trader.trading == "":
             self.trader.startTrade(self.coin)
+        if self.trader.trading == self.coin:
+            self.logger.log("-------- NOW TRADING {0} FOR REAL MONEY --------".format(self.coin))
 
     def tryEndTrade(self):
         if self.trader.trading == self.coin:
             self.trader.endTrade()
+            if self.trader.trading != self.coin:
+                self.logger.log("-------- ENDED TRADE WITH {0} FOR REAL MONEY --------".format(self.coin))
 
     def revertBack(self):
         if self.mainBuyOrder:
             self.tryCancel(self.coin, self.mainBuyOrder)
         if self.mainSellOrder:
-            self.trySell(self.coin, "BTC", None, 0)
-        self.trySell("BTCUSDT", "USDT", None, 5)
+            self.trySell(self.coin, "BTC", None, 0, False)
+        if self.trader.trading == self.coin:
+            self.logger.log("SELLING REMAINING BITOIN BACK INTO USDT")
+            self.trySell("BTCUSDT", "USDT", None, 5, True)
         self.tryEndTrade()
