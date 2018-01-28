@@ -3,10 +3,13 @@ import os
 
 
 class Logger:
-    def __init__(self, name):
+    def __init__(self, name, bouncePlay):
         self.name = name
+        self.bouncePlay = bouncePlay
 
     def log(self, text):
+        if self.bouncePlay:
+            text = "{0} STAGE {1}: ".format(self.name, self.bouncePlay.stage) + text
         # only for the console
         print(text)
         timestamp = datetime.datetime.now()

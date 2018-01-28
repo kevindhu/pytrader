@@ -16,7 +16,7 @@ NUM_THREADS = 100
 
 class ChadAlert:
     def __init__(self):
-        self.logger = Logger("")
+        self.logger = Logger("", None)
         self.trader = Trader(self, self.logger)
         self.workers = []
         self.queue = Queue()

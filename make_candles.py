@@ -6,10 +6,6 @@ API_KEY = ""
 API_SECRET = ""
 
 
-# set a limit buy order
-# order = client.order_limit_buy(symbol='BNBUSDT', quantity=100, price='20')
-
-
 class FindBases:
     def __init__(self, coin):
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
