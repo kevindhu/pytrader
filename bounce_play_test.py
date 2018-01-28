@@ -120,9 +120,9 @@ class BouncePlay:
             if self.mainSellPrice and price > self.mainSellPrice:
                 if self.mainSellOrder:
                     orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainSellOrder["orderId"])
-                    if orderStatus["origQty"] != orderStatus["executedQty"]:
-                        self.logger.log(" NOT DONE EXECUTING SELL, RETRYING"
-                                        .format(self.coin, self.stage))
+                    if orderStatus["status"] != "FILLED":
+                        self.logger.log("NOT DONE EXECUTING SELL, RETRYING (ORDER STATUS: {0})"
+                                        .format(orderStatus["status"]))
                         continue
                 self.logger.log("--------GOT OUT OF TRADE AT {0} for {1}, cancelling any further bids-------".format(
                     self.mainSellPrice, self.coin))
@@ -202,7 +202,7 @@ class BouncePlay:
                 if price < firstBuyPrice:
                     if self.mainBuyOrder:
                         orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
-                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                        if orderStatus["status"] != "FILLED":
                             self.logger.log(
                                 "NOT DONE EXECUTING BID FOR STAGE 2, RETRYING".format(self.coin))
                             continue
@@ -222,7 +222,7 @@ class BouncePlay:
                 if price < secondBuyPrice:
                     if self.mainBuyOrder:
                         orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
-                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                        if orderStatus["status"] != "FILLED":
                             self.logger.log(
                                 "NOT DONE EXECUTING BID FOR STAGE 3, RETRYING".format(self.coin))
                             continue
@@ -237,7 +237,7 @@ class BouncePlay:
                     self.tryCancel(self.coin, self.mainSellOrder)
 
                     self.mainBuyPrice = thirdBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 1)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, 0.95)
                     self.mainSellPrice = secondSellPrice
                     self.mainSellOrder = self.trySell(self.coin, "BTC", self.mainSellPrice, 0)
 
@@ -245,7 +245,7 @@ class BouncePlay:
                 if price < thirdBuyPrice:
                     if self.mainBuyOrder:
                         orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
-                        if orderStatus["origQty"] != orderStatus["executedQty"]:
+                        if orderStatus["status"] != "FILLED":
                             self.logger.log(
                                 "NOT DONE EXECUTING BID FOR STAGE 4, RETRYING".format(self.coin))
                             continue

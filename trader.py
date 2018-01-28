@@ -95,6 +95,9 @@ class Trader:
         return order
 
     def cancelOrder(self, coin, orderId):
+        self.logger.log("CANCEL ORDER #{0} FOR {1}"
+                        .format(orderId, coin))
+
         try:
             self.client.cancel_order(
                 symbol=coin,
