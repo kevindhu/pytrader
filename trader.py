@@ -35,15 +35,17 @@ class Trader:
         self.logger.log("WE WILL USE {0} AMOUNT OF USDT"
                         .format(USDTquantity))
 
-
         secondCoinQuantity = float(self.truncate(USDTquantity /
                                                  self.chadAlert.USDTprices[secondCoin + "USDT"], 5))
         self.logger.log("BUYING {0} AMOUNT OF {1} FOR TRANSFERRING"
                         .format(secondCoinQuantity, secondCoin))
 
-        firstOrder = self.client.order_market_buy(
-            symbol=secondCoin + "USDT",
-            quantity=secondCoinQuantity)
+        try:
+            firstOrder = self.client.order_market_buy(
+                symbol=secondCoin + "USDT",
+                quantity=secondCoinQuantity)
+        except Exception as e:
+            self.logger.log(str(e))
 
         coinQuantity = float(self.truncate((secondCoinQuantity / price) * 0.95, 0))
 
@@ -51,12 +53,16 @@ class Trader:
                         .format(coinQuantity, coin, str(price)))
 
         # limit buy the coin
-        secondOrder = self.client.order_limit_buy(
-            symbol=coin,
-            type=ORDER_TYPE_LIMIT,
-            timeInForce=TIME_IN_FORCE_GTC,
-            quantity=coinQuantity,
-            price=str(price))
+        try:
+            secondOrder = self.client.order_limit_buy(
+                symbol=coin,
+                type=ORDER_TYPE_LIMIT,
+                timeInForce=TIME_IN_FORCE_GTC,
+                quantity=coinQuantity,
+                price=str(price))
+        except Exception as e:
+            self.logger.log(str(e))
+            secondOrder = None
         return secondOrder
 
     def sellCoin(self, coin, secondCoin, price, length):
@@ -70,26 +76,31 @@ class Trader:
 
         self.logger.log("SELLING {0} AMOUNT OF {1}"
                         .format(quantity, coin))
-
-        if price:
-            price = float("%.4g" % price)
-            order = self.client.order_limit_sell(
-                symbol=coin,
-                type=ORDER_TYPE_LIMIT,
-                timeInForce=TIME_IN_FORCE_GTC,
-                quantity=quantity,
-                price=str(price))
-        else:
-            order = self.client.order_market_sell(
-                symbol=coin,
-                quantity=quantity)
-
+        try:
+            if price:
+                price = float("%.4g" % price)
+                order = self.client.order_limit_sell(
+                    symbol=coin,
+                    type=ORDER_TYPE_LIMIT,
+                    timeInForce=TIME_IN_FORCE_GTC,
+                    quantity=quantity,
+                    price=str(price))
+            else:
+                order = self.client.order_market_sell(
+                    symbol=coin,
+                    quantity=quantity)
+        except Exception as e:
+            self.logger.log(str(e))
+            order = None
         return order
 
     def cancelOrder(self, coin, orderId):
-        self.client.cancel_order(
-            symbol=coin,
-            orderId=orderId)
+        try:
+            self.client.cancel_order(
+                symbol=coin,
+                orderId=orderId)
+        except Exception as e:
+            self.logger.log(str(e))
 
     def startTrade(self, coin):
         if self.trading == "":
