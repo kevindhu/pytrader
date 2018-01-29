@@ -206,12 +206,7 @@ class BouncePlay:
                     # go to stage 6 - put it back on runner list
                     self.stage = 6
                     return
-
-                if price - lowestDip > (highestPrice - lowestPrice) * 0.2 and \
-                        ((price - lowestDip) > (highestPrice - lowestDip) * 0.6):
-                    self.logger.log("BOUNCE JUST HAPPENED, STOPPING TRADE".format(self.coin))
-                    self.stage = 6
-
+                
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
                     if self.mainBuyOrder:
