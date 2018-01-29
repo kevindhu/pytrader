@@ -49,13 +49,13 @@ class BouncePlay:
         try:
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "30 hours ago PT")
+                                                                "40 hours ago PT")
         except Exception as e:
             self.logger.log("weird error initializing lastKlines for {0}, retrying".format(self.coin))
             time.sleep(5)
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "30 hours ago PT")
+                                                                "40 hours ago PT")
 
     def run(self):
         self.started = True

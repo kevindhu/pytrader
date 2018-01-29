@@ -83,7 +83,7 @@ class ChadAlert:
             if coin not in self.klines:
                 klines = self.client.get_historical_klines(coin,
                                                            Client.KLINE_INTERVAL_15MINUTE,
-                                                           "30 hours ago PT")
+                                                           "40 hours ago PT")
                 with lock:
                     self.klines[coin] = klines
 
