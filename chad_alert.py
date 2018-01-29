@@ -20,11 +20,12 @@ class ChadAlert:
         self.trader = Trader(self, self.logger)
         self.workers = []
         self.queue = Queue()
+        self.blacklist = set()
         self.klines = {}
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
-        self.blacklist = set()
         self.runners = {}
         self.serverTime = 0.0
+        self.lastClean = 0.0
         self.BTCprices = {}  # BTCprices against BTC
         self.USDTprices = {}
         self.loops = 0
@@ -33,7 +34,6 @@ class ChadAlert:
         self.bounceQueue = {}
         self.bouncePlaying = {}
         self.bouncePlayObjs = {}
-
 
     def run(self):
         for worker_id in range(NUM_THREADS):
@@ -47,6 +47,7 @@ class ChadAlert:
         global lock
         lock = threading.Lock()
         self.logger.log("---STARTING CHAD ALERT---")
+        self.lastClean = self.client.get_server_time()["serverTime"]
 
         while True:
             self.loops += 1
@@ -58,10 +59,13 @@ class ChadAlert:
                     self.queue.put(ticker)
                 if ticker['symbol'].endswith("USDT"):
                     self.USDTprices[ticker['symbol']] = float(ticker['price'])
-
-
-            if self.loops % 4000 == 0:
+            # reset after one day
+            if self.serverTime - self.lastClean > 8000000:
+                self.lastClean = self.serverTime
                 self.logger.log("Resetting blacklist")
+                self.logger.log("Resetting klines")
+                self.blacklist = set()
+                self.klines = {}
 
     def process_queue(self, worker_id):
         while True:
@@ -76,10 +80,7 @@ class ChadAlert:
         return self.BTCprices[coin]
 
     def probe(self, coin, currPrice):
-        TIME_SCALE = "2 hours ago"
-
         try:
-            # updates every 60 minutes
             if coin not in self.klines:
                 klines = self.client.get_historical_klines(coin,
                                                            Client.KLINE_INTERVAL_15MINUTE,
@@ -141,7 +142,6 @@ class ChadAlert:
                             self.addBouncePlay(coin, value)
                             break
 
-        # TODO: STOP RERUNNING
         if coin in self.bouncePlayObjs and not self.bouncePlayObjs[coin].started:
             self.startBouncePlay(coin)
 
