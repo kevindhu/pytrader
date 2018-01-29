@@ -18,6 +18,9 @@ FIRST_SELL = 0.3
 SECOND_SELL = 0.3
 THIRD_SELL = 0.3
 
+FIRST_SMALL_SELL = 0.25
+SECOND_SMALL_SELL = 0.2
+
 flag = False
 
 
@@ -49,13 +52,13 @@ class BouncePlay:
         try:
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "40 hours ago PT")
+                                                                "48 hours ago PT")
         except Exception as e:
             self.logger.log("weird error initializing lastKlines for {0}, retrying".format(self.coin))
             time.sleep(5)
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "40 hours ago PT")
+                                                                "48 hours ago PT")
 
     def run(self):
         self.started = True
