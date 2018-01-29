@@ -115,11 +115,11 @@ class Trader:
     def startTrade(self, coin):
         if self.trading == "":
             self.trading = coin
-            self.logger("NOW TRADING {0} FOR REAL MONEY".format(coin))
+            self.logger.log("NOW TRADING {0} FOR REAL MONEY".format(coin))
 
     def endTrade(self):
         self.trading = ""
-        self.logger("STOPPED TRADE FOR REAL MONEY")
+        self.logger.log("STOPPED TRADE FOR REAL MONEY")
 
     def truncate(self, f, n):
         # Truncates/pads a float f to n decimal places without rounding
