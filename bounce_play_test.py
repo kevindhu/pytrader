@@ -183,7 +183,7 @@ class BouncePlay:
 
             elif self.stage == 1.5:
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
-                if percentage > 47.5:
+                if percentage >= 47.9:
                     self.stage = 2
                     self.logger.log(
                         "PRICE AT {0}, {3}% DIP FROM TOP {1} AND BOTTOM {2}"
