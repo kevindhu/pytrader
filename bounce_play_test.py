@@ -67,7 +67,7 @@ class BouncePlay:
 
         ticker = self.client.get_ticker(symbol=self.coin)
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
-        if volume < 100:
+        if volume < 1000:
             self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
                             "adding to blacklist".format(volume, self.coin))
             self.chadAlert.removeBouncePlay(self.coin)
