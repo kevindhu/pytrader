@@ -76,7 +76,7 @@ class BouncePlay:
 
         firstKline = False
         minVolume = 0.0
-        lowestPrice = 100000
+        lowestPrice = 9999999
         for kline in self.lastKlines:
             volume = float(kline[5])
             if minVolume == 0 or minVolume > volume:
@@ -113,8 +113,8 @@ class BouncePlay:
             self.logger.log("DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
         else:
-            self.logger.log("STARTING VALID TRADE".format(self.coin))
             self.stage = 1
+            self.logger.log("STARTING VALID TRADE".format(self.coin))
             self.startWatchingTime = self.chadAlert.serverTime
 
         while True:
@@ -150,6 +150,7 @@ class BouncePlay:
                     self.logger.log("-------- STOPPING TRADE FOR {0} WITH REAL MONEY --------".format(self.coin))
                 self.stage = 6
 
+            # only be in a stagnant trade for at most a day
             if self.chadAlert.serverTime - self.startWatchingTime > 100000000 and 1 < self.stage < 3:
                 self.logger.log("ENDING BOUNCE PLAY, TAKEN MORE THAN 100000000 milliseconds"
                                 .format(self.coin, self.stage))
@@ -182,7 +183,7 @@ class BouncePlay:
 
             elif self.stage == 1.5:
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
-                if percentage > 47:
+                if percentage > 47.5:
                     self.stage = 2
                     self.logger.log(
                         "PRICE AT {0}, {3}% DIP FROM TOP {1} AND BOTTOM {2}"
@@ -206,7 +207,7 @@ class BouncePlay:
                     # go to stage 6 - put it back on runner list
                     self.stage = 6
                     return
-                
+
                 # if now in the trade, go to stage 3
                 if price < firstBuyPrice:
                     if self.mainBuyOrder:
