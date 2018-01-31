@@ -66,13 +66,6 @@ class BouncePlay:
         # get the first green candle with lowest price and large enough volume
 
         ticker = self.client.get_ticker(symbol=self.coin)
-        volume = float(ticker["volume"]) * float(ticker["lastPrice"])
-        if volume < 1000:
-            self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
-                            "adding to blacklist".format(volume, self.coin))
-            self.chadAlert.removeBouncePlay(self.coin)
-            self.chadAlert.blacklist.add(self.coin)
-            return
 
         firstKline = False
         minVolume = 0.0
@@ -109,7 +102,13 @@ class BouncePlay:
 
         self.logger.log(
             "HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
-        if highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
+
+        volume = float(ticker["volume"]) * float(ticker["lastPrice"])
+        if volume < 1000:
+            self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
+                            "adding to runner list if higher volume".format(volume, self.coin))
+            self.stage = 6
+        elif highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
             self.logger.log("DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
         else:
@@ -157,6 +156,11 @@ class BouncePlay:
                 self.stage = 6
 
             if self.stage == 1:
+                if price > highestPrice * 1.1:
+                    self.logger.log("PRICE WENT TOO HIGH TOO QUICKLY, PROBABLY FAT FINGER, FROM {0} TO {1}"
+                                    .format(price, highestPrice))
+                    self.stage = 6
+                    continue
                 if price > highestPrice:
                     highestPrice = price
                     self.logger.log("NEW HIGH {0}, INCREASED {2}"

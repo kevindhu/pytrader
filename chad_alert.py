@@ -163,6 +163,7 @@ class ChadAlert:
 
     def addBouncePlay(self, coin, value):
         self.logger.log("Playing bounce-play from list: {0}".format(coin))
+        self.logger.log(self.bouncePlaying)
         self.bouncePlayObjs[coin] = BouncePlay(coin, self, self.trader)
         self.bouncePlaying[coin] = value
         self.bounceQueue.pop(coin, 0)
@@ -173,6 +174,7 @@ class ChadAlert:
         self.bouncePlayObjs.pop(coin, 0)
         self.bouncePlayCount = len(self.bouncePlaying)
         self.logger.log("Deleting current bounce play: {0}".format(coin))
+        self.logger.log(self.bouncePlaying)
 
     def startBouncePlay(self, coin):
         self.bouncePlayObjs[coin].run()
