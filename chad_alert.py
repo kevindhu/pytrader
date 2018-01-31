@@ -20,7 +20,8 @@ class ChadAlert:
         self.trader = Trader(self, self.logger)
         self.workers = []
         self.queue = Queue()
-        self.blacklist = set()
+        self.originalBlacklist = {'HSRBTC', 'AMDBTC'}
+        self.blacklist = set(self.originalBlacklist)
         self.klines = {}
         self.client = Client(API_KEY, API_SECRET, {"timeout": 60})
         self.runners = {}
@@ -64,7 +65,7 @@ class ChadAlert:
                 self.lastClean = self.serverTime
                 self.logger.log("Resetting blacklist")
                 self.logger.log("Resetting klines")
-                self.blacklist = set()
+                self.blacklist = set(self.originalBlacklist)
                 self.klines = {}
 
     def process_queue(self, worker_id):
@@ -89,7 +90,7 @@ class ChadAlert:
                     self.klines[coin] = klines
 
         except TypeError:
-            # self.logger.log("TYPEERROR SHIT FOR " + coin + " in " + TIME_SCALE)
+            # self.logger.log("TYPEERROR SHIT FOR " + coin)
             return
 
         minLow = self.getMinLow(self.klines[coin])
@@ -97,11 +98,12 @@ class ChadAlert:
 
         # add to / edit bounce
         with lock:
-            if increase > 0.15 and (coin not in self.bouncePlaying) \
+            if increase > 0.1 and (coin not in self.bouncePlaying) \
                     and (coin not in self.runners) and coin not in self.blacklist:
                 if coin not in self.bounceQueue:
                     self.bounceQueue[coin] = increase
                 elif self.bounceQueue[coin] < increase:
+                    self.logger.log("{0} going up in bounce queue by {1}".format(coin, increase))
                     self.bounceQueue[coin] = increase
 
         # check runners to see if you can bounce play them again
@@ -162,12 +164,12 @@ class ChadAlert:
         return maxHigh
 
     def addBouncePlay(self, coin, value):
-        self.logger.log("Playing bounce-play from list: {0}".format(coin))
         self.logger.log(self.bouncePlaying)
         self.bouncePlayObjs[coin] = BouncePlay(coin, self, self.trader)
-        self.bouncePlaying[coin] = value
         self.bounceQueue.pop(coin, 0)
         self.bouncePlayCount = len(self.bouncePlaying)
+        self.logger.log("Playing bounce-play from list: {0}".format(coin))
+        self.bouncePlaying[coin] = value
 
     def removeBouncePlay(self, coin):
         self.bouncePlaying.pop(coin, 0)

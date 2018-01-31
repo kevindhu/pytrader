@@ -105,8 +105,7 @@ class BouncePlay:
 
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
         if volume < 1000:
-            self.logger.log("Volume ({0} BTC) did not match parameters: deleting from bounce list, "
-                            "adding to runner list if higher volume".format(volume, self.coin))
+            self.logger.log("VOLUME ({0} BTC) DID NOT MATCH PARAMETERS, STOPPING PLAY".format(volume, self.coin))
             self.stage = 6
         elif highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
             self.logger.log("DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
@@ -169,6 +168,7 @@ class BouncePlay:
                 # if the price dips more than 40% of the move
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage > 30:
+                    self.stage = 1.5
                     firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * FIRST_BUY)
                     secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * SECOND_BUY)
                     thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * THIRD_BUY)
@@ -183,9 +183,12 @@ class BouncePlay:
                         firstSellPrice,
                         secondSellPrice,
                         thirdSellPrice, self.coin))
-                    self.stage = 1.5
 
             elif self.stage == 1.5:
+                if price > highestPrice:
+                    self.logger.log("PRICE ({0}) WENT HIGHER THAN HIGH, REVERTING BACK TO STAGE 1".format(price))
+                    self.stage = 1
+                    continue
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage >= 47.9:
                     self.stage = 2
