@@ -52,13 +52,13 @@ class BouncePlay:
         try:
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "48 hours ago PT")
+                                                                "200 hours ago PT")
         except Exception as e:
             self.logger.log("weird error initializing lastKlines for {0}, retrying".format(self.coin))
             time.sleep(5)
             self.lastKlines = self.client.get_historical_klines(self.coin,
                                                                 Client.KLINE_INTERVAL_15MINUTE,
-                                                                "48 hours ago PT")
+                                                                "200 hours ago PT")
 
     def run(self):
         self.started = True
@@ -67,7 +67,7 @@ class BouncePlay:
 
         ticker = self.client.get_ticker(symbol=self.coin)
 
-        firstKline = False
+        firstKline = None
         minVolume = 0.0
         lowestPrice = 9999999
         for kline in self.lastKlines:
@@ -104,7 +104,7 @@ class BouncePlay:
             "HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
 
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
-        if volume < 1000:
+        if volume < 500:
             self.logger.log("VOLUME ({0} BTC) DID NOT MATCH PARAMETERS, STOPPING PLAY".format(volume, self.coin))
             self.stage = 6
         elif highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
@@ -132,7 +132,7 @@ class BouncePlay:
             if self.mainSellPrice and price > self.mainSellPrice:
                 if self.mainSellOrder:
                     orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainSellOrder["orderId"])
-                    if orderStatus["status"] != "FILLED":
+                    if orderStatus["status"] != "FILLED" or orderStatus["status"] != "CANCELED":
                         self.logger.log("NOT DONE EXECUTING SELL, RETRYING (ORDER STATUS: {0})"
                                         .format(orderStatus["status"]))
                         continue
@@ -209,10 +209,11 @@ class BouncePlay:
                     self.startTime = self.chadAlert.serverTime
 
             elif self.stage == 2:
-                if self.chadAlert.serverTime - firstKline[0] <= 300000:
+                if self.chadAlert.serverTime - firstKline[0] <= 3600000:
                     self.logger.log("BOUNCE HAPPENED TOO QUICKLY, PUTTING BACK ON RUNNER LIST".format(self.coin))
                     self.stage = 6
                     continue
+
 
                 if price < firstBuyPrice:
                     if self.mainBuyOrder:
