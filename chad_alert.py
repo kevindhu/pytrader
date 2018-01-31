@@ -108,8 +108,8 @@ class ChadAlert:
 
         # check runners to see if you can bounce play them again
         if coin in self.runners:
-            if self.serverTime - self.runners[coin]["time"] > 400000000:
-                self.logger.log("Taking {0} out of runners, time since start has exceeded 400000000".format(coin))
+            if self.serverTime - self.runners[coin]["time"] > 800000000:
+                self.logger.log("Taking {0} out of runners, time since start has exceeded 800000000".format(coin))
                 self.runners.pop(coin, 0)
 
             elif currPrice > self.runners[coin]["high"] * 1.1:
