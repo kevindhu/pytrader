@@ -6,20 +6,14 @@ import time
 API_KEY = "i1s87G06vlhZTdKy7z3V0IRRKujhvps4umFTELYqre3awoeD4ZKpzWsCm8O3HklK"
 API_SECRET = "mpZGQfH0SraheOvbJZMANJCWapD5xDo0HfbapGGmjm3YCXxsvrFj4a5zVxNOqdoP"
 NUM_THREADS = 100
-FIRST_BUY_PERC = 0.33
-SECOND_BUY_PERC = 0.5
-THIRD_BUY_PERC = 0.95
 
-FIRST_BUY = 0.52
-SECOND_BUY = 0.4
-THIRD_BUY = 0.3
+BUY_PERC = (0.33, 0.5, 0.95)
 
-FIRST_SELL = 0.3
-SECOND_SELL = 0.3
-THIRD_SELL = 0.3
+BUYS_A = (0.52, 0.4, 0.3)
+SELLS_A = (0.3, 0.28, 0.25, 0.22, 0.18)
 
-FIRST_SMALL_SELL = 0.25
-SECOND_SMALL_SELL = 0.2
+BUYS_B = (0.3, 0.2, 0.15)
+SELLS_B = (0.2, 0.23, 0.23, 0.17, 0.15)
 
 flag = False
 
@@ -36,9 +30,6 @@ class BouncePlay:
         self.startTime = 0
         self.startWatchingTime = 0
         self.started = False
-        self.firstBuyDone = False
-        self.secondBuyDone = False
-        self.thirdBuyDone = False
 
         self.mainBuyOrder = None
         self.mainSellOrder = None
@@ -101,12 +92,21 @@ class BouncePlay:
         lowestDip = lowestHistDip
 
         self.logger.log(
-            "HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip, self.coin))
+            "HIGH, LOW, LOWESTDIP - {0}, {1}, {2}".format(highestPrice, lowestPrice, lowestDip))
 
         volume = float(ticker["volume"]) * float(ticker["lastPrice"])
+
+        buys = BUYS_A
+        sells = SELLS_A
+        if 500 < volume < 1000:
+            buys = BUYS_B
+            sells = SELLS_B
+            self.logger.log("PLAYING MORE CAUTIOUSLY, VOLUME IS ONLY {0}".format(volume))
+
         if volume < 500:
-            self.logger.log("VOLUME ({0} BTC) DID NOT MATCH PARAMETERS, STOPPING PLAY".format(volume, self.coin))
+            self.logger.log("VOLUME ({0} BTC) DID NOT MATCH PARAMETERS, STOPPING PLAY".format(volume, ))
             self.stage = 6
+
         elif highestPrice - lowestHistDip > (highestPrice - lowestPrice) * 0.5:
             self.logger.log("DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
@@ -169,13 +169,13 @@ class BouncePlay:
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage > 30:
                     self.stage = 1.5
-                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * FIRST_BUY)
-                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * SECOND_BUY)
-                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * THIRD_BUY)
+                    firstBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * buys[0])
+                    secondBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * buys[1])
+                    thirdBuyPrice = lowestPrice + ((highestPrice - lowestPrice) * buys[2])
 
-                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * FIRST_SELL)
-                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * SECOND_SELL)
-                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * THIRD_SELL)
+                    firstSellPrice = firstBuyPrice + ((highestPrice - firstBuyPrice) * sells[0])
+                    secondSellPrice = secondBuyPrice + ((highestPrice - secondBuyPrice) * sells[1])
+                    thirdSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * sells[2])
                     self.logger.log("LOOKING INTO TRADE FROM {0} - {3}, {1} - {4}, {2} - {5}".format(
                         firstBuyPrice,
                         secondBuyPrice,
@@ -205,7 +205,7 @@ class BouncePlay:
                         thirdSellPrice, self.coin))
 
                     self.mainBuyPrice = firstBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, FIRST_BUY_PERC)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, BUY_PERC[0])
                     self.startTime = self.chadAlert.serverTime
 
             elif self.stage == 2:
@@ -214,13 +214,12 @@ class BouncePlay:
                     self.stage = 6
                     continue
 
-
                 if price < firstBuyPrice:
                     if self.mainBuyOrder:
                         orderStatus = self.client.get_order(symbol=self.coin, orderId=self.mainBuyOrder["orderId"])
                         if orderStatus["status"] != "FILLED":
                             self.logger.log(
-                                "NOT DONE EXECUTING BID FOR STAGE 2, RETRYING".format(self.coin))
+                                "NOT DONE EXECUTING BUY FOR STAGE 2, RETRYING".format(self.coin))
                             continue
 
                     self.stage = 2.5
@@ -236,7 +235,7 @@ class BouncePlay:
                 if price < secondBuyPrice * 1.02:
                     self.stage = 3
                     self.mainBuyPrice = secondBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, SECOND_BUY_PERC)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, BUY_PERC[1])
                     self.logger.log("ATTEMPTING TO BUY AT {0}".format(self.mainBuyPrice))
 
             elif self.stage == 3:
@@ -263,7 +262,7 @@ class BouncePlay:
                 if price < thirdBuyPrice * 1.02:
                     self.stage = 4
                     self.mainBuyPrice = thirdBuyPrice
-                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, THIRD_BUY_PERC)
+                    self.mainBuyOrder = self.tryBuy("BTC", self.mainBuyPrice, BUY_PERC[2])
                     self.logger.log("ATTEMPTING TO BUY AT {0}".format(self.mainBuyPrice))
 
             elif self.stage == 4:
@@ -296,7 +295,7 @@ class BouncePlay:
                     self.firstDeduction = True
                     self.tryCancel(self.coin, self.mainSellOrder)
 
-                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * FIRST_SMALL_SELL)
+                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * sells[3])
                     self.logger.log("ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
                         smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
                     self.mainSellPrice = smallSellPrice
@@ -306,7 +305,7 @@ class BouncePlay:
                     self.secondDeduction = True
                     self.tryCancel(self.coin, self.mainSellOrder)
 
-                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * SECOND_SMALL_SELL)
+                    smallSellPrice = thirdBuyPrice + ((highestPrice - thirdBuyPrice) * sells[4])
                     self.logger.log("ATTEMPT TO NOW SELL AT {0} INSTEAD OF {1} - DURATION OF {2}".format(
                         smallSellPrice, self.mainSellPrice, downTrendTime, self.coin))
                     self.mainSellPrice = smallSellPrice

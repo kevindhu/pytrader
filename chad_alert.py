@@ -110,8 +110,8 @@ class ChadAlert:
         if coin in self.runners:
             if self.serverTime - self.runners[coin]["time"] > 800000000:
                 self.logger.log("Taking {0} out of runners, time since start has exceeded 800000000".format(coin))
-                self.runners.pop(coin, 0)
-
+                self.runners.pop(coin,
+            0)
             elif currPrice > self.runners[coin]["high"] * 1.1:
                 self.logger.log("Price for {0} has gone 10% higher than high at {1}: Adding runner "
                                 "back into bounce queue".format(coin, self.runners[coin]["high"]))
