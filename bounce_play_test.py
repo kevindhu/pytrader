@@ -15,8 +15,8 @@ SELLS_A = (0.3, 0.28, 0.25, 0.22, 0.18)
 BUYS_B = (0.3, 0.2, 0.15)
 SELLS_B = (0.2, 0.23, 0.23, 0.17, 0.15)
 
-TIMER_A = 14400000
-TIMER_B = 28800000
+TIMER_A = 108000000
+TIMER_B = 208000000
 
 flag = False
 
@@ -110,11 +110,9 @@ class BouncePlay:
             sells = SELLS_B
             timer = TIMER_B
             self.logger.log("PLAYING MORE CAUTIOUSLY, VOLUME IS ONLY {0}".format(volume))
-
         if volume < 500:
             self.logger.log("VOLUME ({0} BTC) DID NOT MATCH PARAMETERS, STOPPING PLAY".format(volume))
             self.stage = 6
-
         elif highestPrice - lowestHistDip > (highestPrice - lowestPrice) * buys[0]:
             self.logger.log("DIP ALREADY HAPPENED (DROPPED MORE THAN 50% FROM HIGH)".format(self.coin))
             self.stage = 6
@@ -156,11 +154,17 @@ class BouncePlay:
                     self.logger.log("-------- STOPPING TRADE FOR {0} WITH REAL MONEY --------".format(self.coin))
                 self.stage = 6
 
-            # only be in a stagnant trade for at most a day
-            if self.chadAlert.serverTime - self.startWatchingTime > 100000000 and 1 < self.stage < 3:
-                self.logger.log("ENDING BOUNCE PLAY, TAKEN MORE THAN 100000000 milliseconds"
-                                .format(self.coin, self.stage))
+            if self.chadAlert.serverTime - highTime > timer and self.stage < 3:
+                self.logger.log(
+                    "DROP HAPPENED TOO SLOW, (OVER {0} MILLISECONDS), PUTTING BACK ON RUNNER LIST".format(timer))
                 self.stage = 6
+                continue
+
+            if self.chadAlert.serverTime - self.startWatchingTime > 86400000 and self.stage == 1:
+                self.logger.log(
+                    "DROP HAPPENED TOO SLOW, (OVER {0} MILLISECONDS), PUTTING BACK ON RUNNER LIST".format(timer))
+                self.stage = 6
+                continue
 
             if self.stage == 1:
                 if price > highestPrice * 1.1:
@@ -170,6 +174,7 @@ class BouncePlay:
                     continue
                 if price > highestPrice:
                     highestPrice = price
+                    highTime = self.chadAlert.serverTime
                     self.logger.log("NEW HIGH {0}, INCREASED {2}"
                                     .format(highestPrice, self.coin, highestPrice - lowestPrice))
 
@@ -197,10 +202,6 @@ class BouncePlay:
                     self.logger.log("PRICE ({0}) WENT HIGHER THAN HIGH, REVERTING BACK TO STAGE 1".format(price))
                     self.stage = 1
                     continue
-                if self.chadAlert.serverTime - highTime > timer:
-                    self.logger.log("DROP HAPPENED TOO SLOW, (OVER 4 HOURS), PUTTING BACK ON RUNNER LIST")
-                    self.stage = 6
-                    continue
 
                 percentage = ((highestPrice - price) / (highestPrice - lowestPrice)) * 100
                 if percentage >= 47.9:
@@ -222,10 +223,6 @@ class BouncePlay:
                     self.startTime = self.chadAlert.serverTime
 
             elif self.stage == 2:
-                if self.chadAlert.serverTime - highTime > 14400000:
-                    self.logger.log("DROP HAPPENED TOO SLOW, (OVER 4 HOURS), PUTTING BACK ON RUNNER LIST")
-                    self.stage = 6
-                    continue
                 if self.chadAlert.serverTime - firstKline[0] <= 3600000:
                     self.logger.log("BOUNCE HAPPENED TOO QUICKLY, PUTTING BACK ON RUNNER LIST".format(self.coin))
                     self.stage = 6
