@@ -98,7 +98,7 @@ class ChadAlert:
 
         # add to / edit bounce
         with lock:
-            if increase > 0.1 and (coin not in self.bouncePlaying) \
+            if increase > 0.15 and (coin not in self.bouncePlaying) \
                     and (coin not in self.runners) and coin not in self.blacklist:
                 if coin not in self.bounceQueue:
                     self.bounceQueue[coin] = increase
