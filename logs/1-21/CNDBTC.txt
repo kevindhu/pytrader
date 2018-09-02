@@ -1,6 +1,0 @@
-2018-01-21 13:05:11.504540: -------------------------------------------------------
-2018-01-21 13:05:11.643430: CNDBTC: high, low, lowestDip: 1.92e-05, 1.58e-05, 1.67e-05
-2018-01-21 13:05:11.659045: dip already happened, putting CNDBTC back on the runner list
-2018-01-21 23:33:31.456501: -------------------------------------------------------
-2018-01-21 23:33:31.593183: CNDBTC: high, low, lowestDip: 2.981e-05, 1.614e-05, 2.416e-05
-2018-01-21 23:33:31.594186: dip already happened, putting CNDBTC back on the runner list

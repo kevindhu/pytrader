@@ -1,8 +1,0 @@
-2018-01-18 22:48:55.624427: BouncePlay - high, low: 1.45e-05, 8.6e-06
-2018-01-18 22:48:55.624427: BouncePlay - dip already happened, putting CDTBTC back on the runner list
-2018-01-18 23:09:32.834347: -------------------------------------------------------
-2018-01-18 23:09:32.976524: high, low: 1.45e-05, 8.6e-06
-2018-01-18 23:09:32.977526: dip already happened, putting CDTBTC back on the runner list
-2018-01-18 23:10:34.988586: -------------------------------------------------------
-2018-01-18 23:10:35.119801: high, low: 1.45e-05, 8.6e-06
-2018-01-18 23:10:35.119801: dip already happened, putting CDTBTC back on the runner list

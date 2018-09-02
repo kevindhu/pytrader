@@ -1,4 +1,0 @@
-2018-01-21 13:05:10.750922: adding CNDBTC to bounce list
-2018-01-21 13:05:10.752932: Playing bounce-play from list: CNDBTC
-2018-01-21 13:59:34.662366: adding VENBTC to bounce list
-2018-01-21 13:59:34.668390: Playing bounce-play from list: VENBTC
