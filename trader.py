@@ -2,8 +2,8 @@ from __future__ import division
 from binance.client import Client
 from binance.enums import *
 
-API_KEY = "i1s87G06vlhZTdKy7z3V0IRRKujhvps4umFTELYqre3awoeD4ZKpzWsCm8O3HklK"
-API_SECRET = "mpZGQfH0SraheOvbJZMANJCWapD5xDo0HfbapGGmjm3YCXxsvrFj4a5zVxNOqdoP"
+API_KEY = ""
+API_SECRET = ""
 NUM_THREADS = 100
 
 

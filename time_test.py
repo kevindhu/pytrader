@@ -1,9 +1,9 @@
 from binance.client import Client
 import time
 
-api_key = 'xxx'
-api_secret = 'xxx'
-client = Client(api_key, api_secret)
+API_KEY = ""
+API_SECRET = ""
+client = Client(API_KEY, API_SECRET)
 
 for i in range(1, 10):
     local_time1 = int(time.time() * 1000)
